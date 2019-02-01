@@ -1,0 +1,160 @@
+Quick start
+====================
+
+**(Assuming user has already installed the prerequisites)**
+
+The file *sample_script.sh* (provided in GitHub archive) contains the sample script to execute FitHiChIP. The sample command to run FitHiChIP is:
+
+	bash FitHiChIP_HiCPro.sh -C configuration_file_name
+
+where, 
+
+	"FitHiChIP_HiCPro.sh": main executable of FitHiChIP pipeline.
+
+In the GitHub archive, four configuration files are provided for users to check:
+
+	1. **configfile_BiasCorrection_CoverageBias**: This configuration file can be used as template to execute FitHiChIP(L) & FitHiChIP(L+M) with coverage bias correction.
+	
+	2. *configfile_BiasCorrection_ICEBias*: FitHiChIP(L) & FitHiChIP(L+M) with ICE bias correction.
+	
+	3. *configfile_P2P_BiasCorrection_CoverageBias*: FitHiChIP(S) & FitHiChIP(S+M) with coverage bias correction.
+	
+	4. *configfile_P2P_BiasCorrection_ICEBias*: FitHiChIP(S) & FitHiChIP(S+M) with ICE bias correction.
+
+**User may look into any one of the configuration files**, and tally with the section :ref:`Setting up configuration file` for understanding the configuration parameters.
+
+.. note:: 
+	Some of the parameters are kept blank in the configuration files, meaning those parameters are optional.
+
+
+Downloading the test data
+--------------------------
+
+The folder "TestData" in the GitHub archieve contains sample HiChIP data and peak files. The above mentioned configuration files are also tuned according to the given test data. User may download the test data and run FitHiChIP for testing.
+
+The "TestData" folder contains the following files:
+
+	1. Sample_ValidPairs.txt.gz: 
+
+		Sample valid pairs file, an output from HiC-Pro pipeline.
+	
+	2. Sample.Peaks.gz: 
+
+		Reference ChIP-seq peak information correspondin to the given data.
+
+	3. MboI_hg19_RE_Fragments.bed.gz: 
+
+		Restriction fragments generated using MboI restriction enzyme, corresponding to the reference genome 'hg19'.
+
+		.. note::
+
+			This file is not mandatory for FitHiChIP pipeline. 
+
+			But these restriction fragments (of any restriction enzyme) are essential for executing HiC-pro on a given set of paired end reads (.fastq.gz files).
+
+			For test data involving different reference genome and restriction fragments, user needs to first download corresponding restriction sites. Please refer to HiC-pro manual for details.
+
+	4. chrom_hg19.sizes: 
+
+		Size individual chromosomes corresponding to the reference genome hg19
+
+		.. note::
+
+			For different reference genome, user needs to download appropriate chromosome size file from UCSC genome browser site.
+
+			For example, current file can be downloaded from the link: <http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes>
+
+
+Configuration parameters according to the test data
+----------------------------------------------------
+
+**User should provide the following mandatory parameters:**
+
+	1. ValidPairs: 
+		
+		HiC-pro pipeline generated valid pairs file (gzipped or uncompressed tab delimited text format).
+
+	2. PeakFile: 
+
+		Either reference ChIP-seq peak file, or peaks inferred from HiChIP data (please check the utility script for finding peaks from HiChIP data)
+	
+	3. OutDir: 
+
+		Output directory containing all the results
+
+	4. HiCProBasedir: 
+
+		HiC-pro installation directory
+
+	5. ChrSizeFile: 
+
+		size of individual chromosomes corresponding to the reference genome (one example file "chrom_hg19.sizes" is provided within the TestData folder. Can be downloaded from UCSC genome browser).
+
+	6. IntType: 
+
+		Can be between 1 to 5. Values are: 
+
+			1 (peak-to-peak), 
+			
+			2 (peak-to-non-peak), 
+			
+			3 (peak-to-all)
+			
+			4 (all-to-all: similar to Hi-C)
+			
+			5 (all modes from 1 to 4 are executed)
+
+			Default and recommended value is 3 (peak to all foreground / output loops). Both peak to peak and peak to non-peak loops will be reported in this case.
+
+	7. BINSIZE: 
+
+		Size of the bins (in bp). We have used 5000 (means 5 Kb) as a bin size.
+
+	8.  LowDistThr: 
+
+		Lower distance threshold of interaction between two intervals (CIS). Default: 20000 (indicates 20 Kb). Interactions below this distance threshold will not be considered for statistical significance analysis.
+
+	9. UppDistThr: 
+
+		Upper distance threshold of interaction between two intervals (CIS). Default: 2000000 (indicates 2 Mb). Interactions above this distance threshold will not be considered for statistical significance analysis.
+
+	10. QVALUE: 
+
+		Minimum FDR (q-value) cutoff for detecting significant interactions. Default: 0.01
+
+	11. UseP2PBackgrnd: 
+
+		Two possible values 0 or 1, applicable only if IntType = 3 (peak-to-all foreground)
+
+			0: FitHiChIP(L) or loose background is employed
+			
+			1: FitHiChIP(S) or stringent background is employed.
+
+			We recommend the value 1 for high sequencing depth, and 0 for low to moderate sequencing depth.
+
+	12. BiasCorrection: 
+
+		This value MUST be set as 1
+
+	13. BiasType: 
+
+		Can be 1 (coverage bias) or 2 (ICE bias). We recommend 1 (and reported most of the results in our manuscript using this value as 1).
+
+	14. MergeInt: 
+
+		Boolean variable. If 1, merge filtering is enabled, meaning loops with adjacent bins in both sides are clubbed together via connected component modeling, to return a subset of most significant loops. We recommend 1.  
+
+	15. OverWrite: 
+
+		Boolean variable. If 1, overwrites the existing output files of FitHiChIP. User may set this value 1 if previous execution was interrupted or a new version of code is being executed. 
+
+
+
+Sample logs from the console, corresponding to the TestData
+--------------------------------------------------------------
+
+Upon executing the given sample script, test data, and the configuration files, texts logged in the console are provided in the file **SampleConsoleOutput.txt**.
+
+User can compare this text file with his / her console output, to check whether the execution has been successful.
+
+

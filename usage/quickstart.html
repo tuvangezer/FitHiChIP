@@ -131,29 +131,30 @@
   <div class="section" id="quick-start">
 <h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
 <p><strong>(Assuming user has already installed the prerequisites)</strong></p>
-<p>The file <em>sample_script.sh</em> contains sample script to execute FitHiChIP, having the following command:</p>
+<p>The file <em>sample_script.sh</em> (provided in GitHub archive) contains the sample script to execute FitHiChIP. The sample command to run FitHiChIP is:</p>
 <blockquote>
 <div>bash FitHiChIP_HiCPro.sh -C configuration_file_name</div></blockquote>
 <p>where,</p>
 <blockquote>
-<div>“FitHiChIP_HiCPro.sh”: main executable code of FitHiChIP pipeline.</div></blockquote>
-<p>Four configuration files are provided:</p>
+<div>“FitHiChIP_HiCPro.sh”: main executable of FitHiChIP pipeline.</div></blockquote>
+<p>In the GitHub archive, four configuration files are provided for users to check:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><em>configfile_BiasCorrection_CoverageBias</em>: FitHiChIP(L) &amp; FitHiChIP(L+M) with coverage bias correction.</li>
+<li><strong>configfile_BiasCorrection_CoverageBias</strong>: This configuration file can be used as template to execute FitHiChIP(L) &amp; FitHiChIP(L+M) with coverage bias correction.</li>
 <li><em>configfile_BiasCorrection_ICEBias</em>: FitHiChIP(L) &amp; FitHiChIP(L+M) with ICE bias correction.</li>
 <li><em>configfile_P2P_BiasCorrection_CoverageBias</em>: FitHiChIP(S) &amp; FitHiChIP(S+M) with coverage bias correction.</li>
 <li><em>configfile_P2P_BiasCorrection_ICEBias</em>: FitHiChIP(S) &amp; FitHiChIP(S+M) with ICE bias correction.</li>
 </ol>
 </div></blockquote>
-<p><strong>User may look into any one of the configuration files or the detailed README file for understanding the configuration parameters.</strong></p>
+<p><strong>User may look into any one of the configuration files</strong>, and tally with the section <a class="reference internal" href="configuration.html#setting-up-configuration-file"><span class="std std-ref">Setting up configuration file</span></a> for understanding the configuration parameters.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Some of the parameters are kept blank in the configuration files, meaning those parameters are optional.</p>
 </div>
 <div class="section" id="downloading-the-test-data">
 <h2>Downloading the test data<a class="headerlink" href="#downloading-the-test-data" title="Permalink to this headline">¶</a></h2>
-<p>The folder “TestData” in the GitHub archieve contains the following files:</p>
+<p>The folder “TestData” in the GitHub archieve contains sample HiChIP data and peak files. The above mentioned configuration files are also tuned according to the given test data. User may download the test data and run FitHiChIP for testing.</p>
+<p>The “TestData” folder contains the following files:</p>
 <blockquote>
 <div><ol class="arabic">
 <li><p class="first">Sample_ValidPairs.txt.gz:</p>
@@ -168,11 +169,11 @@
 </li>
 <li><p class="first">MboI_hg19_RE_Fragments.bed.gz:</p>
 <blockquote>
-<div><p>Restriction fragments generated using MboI restriction enzyme on the reference genome ‘hg19’.</p>
-<p><strong>An optional parameter (please refer to the configuration parameters below)</strong></p>
+<div><p>Restriction fragments generated using MboI restriction enzyme, corresponding to the reference genome ‘hg19’.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>Restriction fragments are required for executing HiC-pro on a given set of paired end reads (.fastq.gz files).</p>
+<p>This file is not mandatory for FitHiChIP pipeline.</p>
+<p>But these restriction fragments (of any restriction enzyme) are essential for executing HiC-pro on a given set of paired end reads (.fastq.gz files).</p>
 <p class="last">For test data involving different reference genome and restriction fragments, user needs to first download corresponding restriction sites. Please refer to HiC-pro manual for details.</p>
 </div>
 </div></blockquote>
@@ -228,8 +229,8 @@
 <p>2 (peak-to-non-peak),</p>
 <p>3 (peak-to-all)</p>
 <p>4 (all-to-all: similar to Hi-C)</p>
-<p>5 all modes from 1 to 4 are executed.</p>
-<p>Default and recommended value is 3 (peak to all foreground / output loops). Both peak to peak and peak to non-peak loops will be reported.</p>
+<p>5 (all modes from 1 to 4 are executed)</p>
+<p>Default and recommended value is 3 (peak to all foreground / output loops). Both peak to peak and peak to non-peak loops will be reported in this case.</p>
 </div></blockquote>
 </div></blockquote>
 </li>
@@ -270,7 +271,7 @@
 </li>
 <li><p class="first">BiasType:</p>
 <blockquote>
-<div><p>Can be 1 (coverage bias) or 2 (ICE bias). We recommend 1.</p>
+<div><p>Can be 1 (coverage bias) or 2 (ICE bias). We recommend 1 (and reported most of the results in our manuscript using this value as 1).</p>
 </div></blockquote>
 </li>
 <li><p class="first">MergeInt:</p>
