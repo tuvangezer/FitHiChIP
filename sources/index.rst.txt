@@ -1,0 +1,60 @@
+.. FitHiChIP_Doc documentation master file, created by
+   sphinx-quickstart on Thu Jan 17 15:35:54 2019.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. :caption: Contents:
+
+Welcome to FitHiChIP!
+=======================
+
+**Developers**: Sourya Bhattacharyya, Ferhat Ay
+
+**Institution**: La Jolla Institute for Allergy and Immunology, La Jolla, CA 92037, USA
+
+FitHiChIP analyzes HiChIP / PLAC-seq data and derives the statistical significant CIS interactions, given a specific distance range (default = 20 Kb to 2 Mb: can be user defined).
+
+Input of FitHiChIP is the valid CIS read pairs generated from the HiC-Pro pipeline (Servant et. al. 2015), the most commonly used Hi-C data processing pipeline. These read pairs are analyzed to find the statistically significant loops within the given distance range. FitHiChIP uses the distance decay model of the interaction count, proposed in the method FitHiC (Ay and Noble, 2014) and also applies a bias specific regression model to find the statistical significant interactions.
+
+Details of execution commands and parameters are provided in the below mentioned links:
+
+.. toctree::
+	:maxdepth: 2
+	
+	usage/installation
+	usage/quickstart
+	usage/configuration
+	usage/output
+	usage/optional
+	usage/DiffLoops
+	usage/Utilities
+	usage/FAQ
+
+
+
+
+Citation
+-----------
+
+If you are using FitHiChIP, please cite:
+
+Sourya Bhattacharyya, Vivek Chandra, Pandurangan Vijayanand, and Ferhat Ay, *FitHiChIP: Identification of significant chromatin contacts from HiChIP data*, preprint at <https://www.biorxiv.org/content/early/2018/09/10/412833>, DOI: <https://doi.org/10.1101/412833>
+
+	
+Contact
+-----------
+
+For any query, please contact:
+
+	- Sourya Bhattacharyya <sourya@lji.org>
+	- Ferhat Ay <ferhatay@lji.org>
+
+
+
+
+.. Indices and tables
+.. ==================
+
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`

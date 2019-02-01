@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Quick start &#8212; FitHiChIP 0.1 documentation</title>
+    <link rel="stylesheet" href="../static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../static/documentation_options.js"></script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/language_data.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setting up configuration file" href="configuration.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          FitHiChIP</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Setting up configuration file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Details of FitHiChIP outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optional.html">Setting up optional parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DiffLoops.html">Differential analysis of HiChIP loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utilities.html">Various utility scripts / functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">Frequently asked question</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Quick start</a><ul>
+<li><a class="reference internal" href="#downloading-the-test-data">Downloading the test data</a></li>
+<li><a class="reference internal" href="#configuration-parameters-according-to-the-test-data">Configuration parameters according to the test data</a></li>
+<li><a class="reference internal" href="#sample-logs-from-the-console-corresponding-to-the-testdata">Sample logs from the console, corresponding to the TestData</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="installation.html" title="Previous Chapter: Installation"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Installation</span>
+    </a>
+  </li>
+  <li>
+    <a href="configuration.html" title="Next Chapter: Setting up configuration file"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Setting up co... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../sources/usage/quickstart.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="quick-start">
+<h1>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<p><strong>(Assuming user has already installed the prerequisites)</strong></p>
+<p>The file <em>sample_script.sh</em> contains sample script to execute FitHiChIP, having the following command:</p>
+<blockquote>
+<div>bash FitHiChIP_HiCPro.sh -C configuration_file_name</div></blockquote>
+<p>where,</p>
+<blockquote>
+<div>“FitHiChIP_HiCPro.sh”: main executable code of FitHiChIP pipeline.</div></blockquote>
+<p>Four configuration files are provided:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><em>configfile_BiasCorrection_CoverageBias</em>: FitHiChIP(L) &amp; FitHiChIP(L+M) with coverage bias correction.</li>
+<li><em>configfile_BiasCorrection_ICEBias</em>: FitHiChIP(L) &amp; FitHiChIP(L+M) with ICE bias correction.</li>
+<li><em>configfile_P2P_BiasCorrection_CoverageBias</em>: FitHiChIP(S) &amp; FitHiChIP(S+M) with coverage bias correction.</li>
+<li><em>configfile_P2P_BiasCorrection_ICEBias</em>: FitHiChIP(S) &amp; FitHiChIP(S+M) with ICE bias correction.</li>
+</ol>
+</div></blockquote>
+<p><strong>User may look into any one of the configuration files or the detailed README file for understanding the configuration parameters.</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Some of the parameters are kept blank in the configuration files, meaning those parameters are optional.</p>
+</div>
+<div class="section" id="downloading-the-test-data">
+<h2>Downloading the test data<a class="headerlink" href="#downloading-the-test-data" title="Permalink to this headline">¶</a></h2>
+<p>The folder “TestData” in the GitHub archieve contains the following files:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Sample_ValidPairs.txt.gz:</p>
+<blockquote>
+<div><p>Sample valid pairs file, an output from HiC-Pro pipeline.</p>
+</div></blockquote>
+</li>
+<li><p class="first">Sample.Peaks.gz:</p>
+<blockquote>
+<div><p>Reference ChIP-seq peak information correspondin to the given data.</p>
+</div></blockquote>
+</li>
+<li><p class="first">MboI_hg19_RE_Fragments.bed.gz:</p>
+<blockquote>
+<div><p>Restriction fragments generated using MboI restriction enzyme on the reference genome ‘hg19’.</p>
+<p><strong>An optional parameter (please refer to the configuration parameters below)</strong></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Restriction fragments are required for executing HiC-pro on a given set of paired end reads (.fastq.gz files).</p>
+<p class="last">For test data involving different reference genome and restriction fragments, user needs to first download corresponding restriction sites. Please refer to HiC-pro manual for details.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first">chrom_hg19.sizes:</p>
+<blockquote>
+<div><p>Size individual chromosomes corresponding to the reference genome hg19</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For different reference genome, user needs to download appropriate chromosome size file from UCSC genome browser site.</p>
+<p class="last">For example, current file can be downloaded from the link: &lt;<a class="reference external" href="http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes">http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.chrom.sizes</a>&gt;</p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="configuration-parameters-according-to-the-test-data">
+<h2>Configuration parameters according to the test data<a class="headerlink" href="#configuration-parameters-according-to-the-test-data" title="Permalink to this headline">¶</a></h2>
+<p><strong>User should provide the following mandatory parameters:</strong></p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">ValidPairs:</p>
+<blockquote>
+<div><p>HiC-pro pipeline generated valid pairs file (gzipped or uncompressed tab delimited text format).</p>
+</div></blockquote>
+</li>
+<li><p class="first">PeakFile:</p>
+<blockquote>
+<div><p>Either reference ChIP-seq peak file, or peaks inferred from HiChIP data (please check the utility script for finding peaks from HiChIP data)</p>
+</div></blockquote>
+</li>
+<li><p class="first">OutDir:</p>
+<blockquote>
+<div><p>Output directory containing all the results</p>
+</div></blockquote>
+</li>
+<li><p class="first">HiCProBasedir:</p>
+<blockquote>
+<div><p>HiC-pro installation directory</p>
+</div></blockquote>
+</li>
+<li><p class="first">ChrSizeFile:</p>
+<blockquote>
+<div><p>size of individual chromosomes corresponding to the reference genome (one example file “chrom_hg19.sizes” is provided within the TestData folder. Can be downloaded from UCSC genome browser).</p>
+</div></blockquote>
+</li>
+<li><p class="first">IntType:</p>
+<blockquote>
+<div><p>Can be between 1 to 5. Values are:</p>
+<blockquote>
+<div><p>1 (peak-to-peak),</p>
+<p>2 (peak-to-non-peak),</p>
+<p>3 (peak-to-all)</p>
+<p>4 (all-to-all: similar to Hi-C)</p>
+<p>5 all modes from 1 to 4 are executed.</p>
+<p>Default and recommended value is 3 (peak to all foreground / output loops). Both peak to peak and peak to non-peak loops will be reported.</p>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p class="first">BINSIZE:</p>
+<blockquote>
+<div><p>Size of the bins (in bp). We have used 5000 (means 5 Kb) as a bin size.</p>
+</div></blockquote>
+</li>
+<li><p class="first">LowDistThr:</p>
+<blockquote>
+<div><p>Lower distance threshold of interaction between two intervals (CIS). Default: 20000 (indicates 20 Kb). Interactions below this distance threshold will not be considered for statistical significance analysis.</p>
+</div></blockquote>
+</li>
+<li><p class="first">UppDistThr:</p>
+<blockquote>
+<div><p>Upper distance threshold of interaction between two intervals (CIS). Default: 2000000 (indicates 2 Mb). Interactions above this distance threshold will not be considered for statistical significance analysis.</p>
+</div></blockquote>
+</li>
+<li><p class="first">QVALUE:</p>
+<blockquote>
+<div><p>Minimum FDR (q-value) cutoff for detecting significant interactions. Default: 0.01</p>
+</div></blockquote>
+</li>
+<li><p class="first">UseP2PBackgrnd:</p>
+<blockquote>
+<div><p>Two possible values 0 or 1, applicable only if IntType = 3 (peak-to-all foreground)</p>
+<blockquote>
+<div><p>0: FitHiChIP(L) or loose background is employed</p>
+<p>1: FitHiChIP(S) or stringent background is employed.</p>
+<p>We recommend the value 1 for high sequencing depth, and 0 for low to moderate sequencing depth.</p>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p class="first">BiasCorrection:</p>
+<blockquote>
+<div><p>This value MUST be set as 1</p>
+</div></blockquote>
+</li>
+<li><p class="first">BiasType:</p>
+<blockquote>
+<div><p>Can be 1 (coverage bias) or 2 (ICE bias). We recommend 1.</p>
+</div></blockquote>
+</li>
+<li><p class="first">MergeInt:</p>
+<blockquote>
+<div><p>Boolean variable. If 1, merge filtering is enabled, meaning loops with adjacent bins in both sides are clubbed together via connected component modeling, to return a subset of most significant loops. We recommend 1.</p>
+</div></blockquote>
+</li>
+<li><p class="first">OverWrite:</p>
+<blockquote>
+<div><p>Boolean variable. If 1, overwrites the existing output files of FitHiChIP. User may set this value 1 if previous execution was interrupted or a new version of code is being executed.</p>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="sample-logs-from-the-console-corresponding-to-the-testdata">
+<h2>Sample logs from the console, corresponding to the TestData<a class="headerlink" href="#sample-logs-from-the-console-corresponding-to-the-testdata" title="Permalink to this headline">¶</a></h2>
+<p>Upon executing the given sample script, test data, and the configuration files, texts logged in the console are provided in the file <strong>SampleConsoleOutput.txt</strong>.</p>
+<p>User can compare this text file with his / her console output, to check whether the execution has been successful.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2019, Sourya Bhattacharyya, Ferhat Ay.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

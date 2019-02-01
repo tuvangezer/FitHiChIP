@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Details of FitHiChIP outputs &#8212; FitHiChIP 0.1 documentation</title>
+    <link rel="stylesheet" href="../static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../static/documentation_options.js"></script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/language_data.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setting up optional parameters" href="optional.html" />
+    <link rel="prev" title="Setting up configuration file" href="configuration.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          FitHiChIP</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Setting up configuration file</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Details of FitHiChIP outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optional.html">Setting up optional parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DiffLoops.html">Differential analysis of HiChIP loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utilities.html">Various utility scripts / functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">Frequently asked question</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Details of FitHiChIP outputs</a><ul>
+<li><a class="reference internal" href="#summary-html-file">Summary HTML file</a></li>
+<li><a class="reference internal" href="#details-of-output-files">Details of output files</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="configuration.html" title="Previous Chapter: Setting up configuration file"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Setting up co...</span>
+    </a>
+  </li>
+  <li>
+    <a href="optional.html" title="Next Chapter: Setting up optional parameters"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Setting up op... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../sources/usage/output.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="details-of-fithichip-outputs">
+<h1>Details of FitHiChIP outputs<a class="headerlink" href="#details-of-fithichip-outputs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary-html-file">
+<h2>Summary HTML file<a class="headerlink" href="#summary-html-file" title="Permalink to this headline">¶</a></h2>
+<p>Suppose <strong>OutDir</strong> denotes the specified output directory in the configuration file. Then, successful execution of FitHiChIP pipeline generates an HTML file <em>Summary_results_FitHiChIP.html</em> within this output directory. This file lists all output files generated from the FitHiChIP pipeline, according to the given input parameters.</p>
+</div>
+<div class="section" id="details-of-output-files">
+<h2>Details of output files<a class="headerlink" href="#details-of-output-files" title="Permalink to this headline">¶</a></h2>
+<p>Here we describe all the files and folders existing within the specified output directory <strong>OutDir</strong>.</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first"><strong>Parameters.txt</strong>: a file listing the parameters used for current execution.</p>
+</li>
+<li><p class="first"><strong>TimingProfile.txt</strong>: If the parameter (G.3) is 1, this file lists the time taken for individual steps.</p>
+</li>
+<li><p class="first"><strong>HiCPro_Matrix_BinSize”BINSIZE”</strong>: If the parameters (A.2) and (A.3) are empty, this folder contains the interaction matrix files generated from the input valid pairs file. The interaction matrix files are <em>MatrixHiCPro_abs.bed</em> and <em>MatrixHiCPro.matrix</em>.</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>*.interactions.initial.bed</strong>: CIS interactions with respect to this contact matrix file (interacting regions, and their contact counts) are also dumped separately in this file.</p>
+</li>
+<li><p class="first"><strong>L_”l”_U”u”</strong>: folder name according to the distance thresholds “l” and “u” specified in the parameters (C.3) and (C.4).</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>*.cis.interactions.DistThr.bed</strong>: File within the above mentioned directory contains the CIS interactions filtered within the specified distance thresholds l and u.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>NormFeatures</strong>: Folder containing various statistical features computed for individual genomic intervals / bins (with respect to the specified bin size).</p>
+<blockquote>
+<div><ul>
+<li><p class="first">User may look at the file <strong>*.AllBin_CompleteFeat.bed</strong> specifically. The file is of the following format:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">Columns 1 to 3: chromosome interval (according to the specified bin size).</p>
+</li>
+<li><p class="first">Column 4: Coverage of this interval (number of reads mapped onto it)</p>
+</li>
+<li><p class="first">Column 5: denotes whether this interval belongs to a peak segment (1) or non-peak segment (0). Here, the peak information is with respect to the parameter (A.4) of the configuration file.</p>
+</li>
+<li><p class="first">Column 6: Bias value of this interval. Computed either by coverage specific bias correction, or the ICE specific bias normalization, according to the value of the parameter (E.2).</p>
+</li>
+<li><p class="first">Columns 7 and 8 denote the mappability and GC contents, respectively, for the current interval.</p>
+<blockquote>
+<div><ul class="simple">
+<li><em>These values are zero if no mappability, restriction fragment and reference genome fasta sequence are provided</em>.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">The folders <strong>FitHiChIP_”INTTYPE”_b”BINSIZE”_L”l”_U”u”</strong> contain the results for different types of interactions, subject to the specified bin size, and the distance thresholds specified.</p>
+<blockquote>
+<div><ul>
+<li><p class="first">INTTYPE: interaction type: Have one of the following values:</p>
+<blockquote>
+<div><ul class="simple">
+<li>ALL2ALL (when the parameter (C.1) = 4)</li>
+<li>Peak2Peak (when the parameter (C.1) = 1)</li>
+<li>Peak2NonPeak (when the parameter (C.1) = 2)</li>
+<li>Peak2ALL (when the parameter (C.1) = 3)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Within this folder, a directory structure of the following naming pattern is created:</p>
+<blockquote>
+<div><p><strong>P2PBckgr_[UseP2PBackgrnd]/[BiasType]</strong></p>
+</div></blockquote>
+</li>
+</ul>
+<p>Where:</p>
+<blockquote>
+<div><ul class="simple">
+<li>[UseP2PBackgrnd]: Value of the parameter (D.2)</li>
+<li>[BiasType]: String of either “Coverage_Bias” or “ICE_Bias”, according to the value of parameter (E.2).</li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p class="first">Within this generic directory structure, following files and folders are created:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Interactions.bed</strong>: All contacts among the selected pairs of segments (depending upon the value of INTTYPE).</li>
+<li><strong>Interactions.sortedGenDist.bed</strong>: Above contacts are sorted by increasing genomic distance. Used as an input to the custom FitHiC implementation.</li>
+<li><strong>FitHiC</strong>: If the option (E.1) = 0, this folder contains the significant interactions generated by Naive FitHiC method (without any bias correction technique).</li>
+<li><strong>FitHiC_BiasCorr</strong>: this folder is created when (E.1) = 1.</li>
+</ul>
+<p>Directory structure within the folders <strong>FitHiC</strong> and <strong>FitHiC_BiasCorr</strong> are similar. Following files and folders reside within this directory:</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>Bin_Info.log</strong>: File listing the bins employed in FitHiChIP (equal occupancy bins)</li>
+<li>configuration.txt: list of configuration parameters for FitHiChIP</li>
+<li><strong>*PREFIX*.interactions_FitHiC.bed</strong>: Lists all interactions along with their probabilities, p and q values, computed using the FitHiChIP method.</li>
+<li><strong>*PREFIX*.interactions_FitHiC_Q”$qval”.bed</strong>: Lists the significant interactions according to the q-value ($qval) significance threshold specified as an input argument. For example, if q value threshold is 0.01, the file name becomes <strong>*PREFIX*.interactions_FitHiC_Q0.01.bed</strong>.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For a custom FDR threshold (say 0.05), user may use the following awk script to filter the file (C) based on its last column.</p>
+<blockquote class="last">
+<div><p>awk ‘$NF&lt;0.05’ PREFIX.interactions_FitHiC.bed &gt; FitHiC_out_Q0.05.bed</p>
+</div></blockquote>
+</div>
+<ul>
+<li><p class="first"><strong>*PREFIX*.interactions_FitHiC_Q”$qval”_WashU.bed.gz</strong>: Significant interactions are converted to WashU epigenome browser compatible format. There is also a tabix compressed file alongwith. User can upload this file in the WashU epigenome browser.</p>
+</li>
+<li><p class="first"><strong>*PREFIX*.interactions_FitHiC_Q”$qval”_Dist_CC.pdf</strong>: Plots the contact count vs genomic distance, corresponding to the significant loops.</p>
+</li>
+<li><p class="first"><strong>Merge_Nearby_Interactions</strong>: Directory containing the output of merge filtering operation, provided the parameter (F.1) is set as 1.</p>
+<blockquote>
+<div><ul class="simple">
+<li><strong>*PREFIX*.interactions_FitHiC_Q”$qval”_MergeNearContacts.bed</strong>: output significant loop file after merge filtering operation.</li>
+<li><strong>*PREFIX*.interactions_FitHiC_Q”$qval”_MergeNearContacts_WashU.bed.gz</strong>: WashU epigenome browser compatible loops.</li>
+<li><strong>*PREFIX*.interactions_FitHiC_Q”$qval”_MergeNearContacts_Dist_CC.pdf</strong>: Plot between contact count and interaction distance, corresponding to the significant and merged loops.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2019, Sourya Bhattacharyya, Ferhat Ay.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+Installation
+====================
+
+User can download FitHiChIP from the GitHub as a zipped archieve, and extract.
+
+FitHiChIP requires the following packages / libraries to be installed:
+
+1. HiC-pro (obtained from <https://github.com/nservant/HiC-Pro>) (>= version 2.9.0)
+
+2. Python2 (>= version 2.7)
+
+	Following python libraries are to be installed:
+
+	- OptionParser (from the library optparse)
+	- gzip
+	- networkx <https://networkx.github.io/>
+
+3. R (>= 3.4.3) 
+
+	Following R packages are to be installed:
+
+	- optparse 
+	- ggplot2 
+	- splines 
+	- fdrtool 
+	- parallel 
+	- tools 
+	- GenomicRanges 
+	- dplyr 
+
+	If differential analysis of FitHiChIP loops is to be performed, user should also install
+
+	- EdgeR <https://bioconductor.org/packages/release/bioc/html/edgeR.html>
+
+4. bedtools (version >= 2.26.0) <http://bedtools.readthedocs.io/en/latest/>
+
+5. samtools (version >= 1.6) <http://www.htslib.org/>
+
+	.. versionadded:: 6.0
+
+	- Also install htslib (version >= 1.6) specifically for the utilities "bgzip" and "tabix"
+
+6. macs2 for peak calling <https://github.com/taoliu/MACS>
+
+**User can check if the above packages are installed by typing each package name in the command line terminal and checking if the package exists in the system.**
+
+**FitHiChIP is tested in linux environment, and requires bash for executing the main script.**
+
+
+

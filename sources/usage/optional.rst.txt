@@ -1,0 +1,35 @@
+Setting up optional parameters
+=====================================
+
+Parameters like fasta sequence, mappability file or restriction fragment file are optional (can be left blank in the configuration file). However, if user wants to provide those files for statistical analysis purpose, he / she can apply following instructions:
+
+Downloading reference genome fasta sequence
+---------------------------------------------
+
+	- Used to compute the GC content information of respective bins. 
+
+	- First, user may download the reference genome in 2 bit format, by using the following link: <http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit>
+
+	- Subsequently, an utility program "twoBitToFa" (UCSC basic tools) may be used to extract .fa file(s) from this archieve. The program can be downloaded from the link: <http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/>
+
+	.. note::
+
+		For a detailed description, please refer to http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/
+
+	- Index the converted fasta file (to create .fai file)
+
+
+
+Downloading the mappability file (corresponding to the reference genome)
+------------------------------------------------------------------------------------------
+
+	- Can be downloaded in BigWig format: <http://hgdownload.cse.ucsc.edu/goldenPath/hg19/encodeDCC/wgEncodeMapability/wgEncodeCrgMapabilityAlign50mer.bigWig>
+
+	- Convert it to bedgraph format, using the UCSC utilty "BigWigToBedgraph" by using the following command:
+
+		BigWigToBedgraph wgEncodeCrgMapabilityAlign50mer.bigWig wgEncodeCrgMapabilityAlign50mer.bedGraph
+
+	.. note::
+
+		Fasta sequence and mappability files depend on the reference genome. User needs to check and download appropriate files according to the reference genome used.
+

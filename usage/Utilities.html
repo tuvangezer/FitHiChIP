@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Various utility scripts / functions &#8212; FitHiChIP 0.1 documentation</title>
+    <link rel="stylesheet" href="../static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../static/documentation_options.js"></script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/language_data.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Frequently asked question" href="FAQ.html" />
+    <link rel="prev" title="Differential analysis of HiChIP loops" href="DiffLoops.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          FitHiChIP</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Setting up configuration file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Details of FitHiChIP outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optional.html">Setting up optional parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DiffLoops.html">Differential analysis of HiChIP loops</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Various utility scripts / functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">Frequently asked question</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Various utility scripts / functions</a><ul>
+<li><a class="reference internal" href="#generating-contact-matrices-of-different-resolution-bin-size">1. generating contact matrices of different resolution (bin size)</a></li>
+<li><a class="reference internal" href="#inferring-peaks-from-hichip-data-for-use-in-the-hichip-pipeline">2. inferring peaks from HiChIP data (for use in the HiChIP pipeline)</a></li>
+<li><a class="reference internal" href="#merging-a-set-of-chip-seq-alignment-files">3. merging a set of ChIP-seq alignment files</a></li>
+<li><a class="reference internal" href="#producing-fithichip-loops-with-different-fdr-thresholds">4. Producing FitHiChIP loops with different FDR thresholds</a></li>
+<li><a class="reference internal" href="#applying-merge-filtering-on-any-set-of-significant-loops-generated-by-fithichip-or-any-other-loop-calling-method">5. Applying merge filtering on any set of significant loops (generated by FitHiChIP or any other loop calling method)</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="DiffLoops.html" title="Previous Chapter: Differential analysis of HiChIP loops"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Differential ...</span>
+    </a>
+  </li>
+  <li>
+    <a href="FAQ.html" title="Next Chapter: Frequently asked question"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Frequently as... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../sources/usage/Utilities.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="various-utility-scripts-functions">
+<h1>Various utility scripts / functions<a class="headerlink" href="#various-utility-scripts-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="generating-contact-matrices-of-different-resolution-bin-size">
+<h2>1. generating contact matrices of different resolution (bin size)<a class="headerlink" href="#generating-contact-matrices-of-different-resolution-bin-size" title="Permalink to this headline">¶</a></h2>
+<p>The script <strong>ContactMatDiffRes.sh</strong> within the folder <strong>Imp_Scripts</strong> generates contact matrix of desired bin size given a valid pairs file generated from the HiC-pro pipeline. Parameters associated with this script is:</p>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-V <var>ValidPairsFile</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Name of the valid pairs file generated from the HiC-pro pipeline</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-B <var>BinSize</var></span></kbd></td>
+<td>Size of the bin (in bytes: target resolution): default 5000 (5 Kb)</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-C <var>ChrSizeFile</var></span></kbd></td>
+<td>File containing the size of the chromosomes corresponding to the reference genome
+(such as hg19.chrom.sizes)</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-D <var>OutDir</var></span></kbd></td>
+<td>Output directory which will contain the contact matrix of the target resolution</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-H <var>HiCProDir</var></span></kbd></td>
+<td>Directory containing the HiC-pro installed package.</td></tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>A folder <strong>HiCPro_Matrix_BinSize${BinSize}</strong> will be created under the specified output directory. The bin specific
+interval file name is <strong>MatrixHiCPro_abs.bed</strong> and the corresponding contact matrix file name is <strong>MatrixHiCPro.matrix</strong></p>
+</div>
+<div class="section" id="inferring-peaks-from-hichip-data-for-use-in-the-hichip-pipeline">
+<h2>2. inferring peaks from HiChIP data (for use in the HiChIP pipeline)<a class="headerlink" href="#inferring-peaks-from-hichip-data-for-use-in-the-hichip-pipeline" title="Permalink to this headline">¶</a></h2>
+<p>The script <strong>PeakInferHiChIP.sh</strong> within the folder <strong>Imp_Scripts</strong> is used to infer peaks from HiChIP data. The script can be used if HiC-pro pipeline is already executed on a given pair of reads (such as .fastq.gz read pairs). The script uses <a href="#id1"><span class="problematic" id="id2">**</span></a>MACS2* package for inferring the peaks. Parameters associated with this script are as follows:</p>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-H <var>HiCProDir</var></span></kbd></td>
+<td>Directory containing the reads generated by HiC-pro pipeline.
+Within this directory, files of the formats .ValidPairs, .DEPairs, .REPairs, and .SCPairs
+are present, which corresponds to different categories of reads generated by the HiC-pro pipeline.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-D <var>OutDir</var></span></kbd></td>
+<td>Directory to contain the output set of peaks. Default: current directory</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-R <var>refGenomeStr</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Reference genome specific string used for MACS2. Default is ‘hs’ for human chromosome.
+For mouse, specify ‘mm’.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-M <var>MACS2ParamStr</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>String depicting the parameters for MACS2. Default: “–nomodel –extsize 147 -q 0.01”</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-L <var>ReadLength</var></span></kbd></td>
+<td>Length of reads for the HiC-pro generated reads. Default 75</td></tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>The script uses all of the DE, SC, RE and validpairs reads generated from the HiC-pro pipeline to infer peaks.
+The folder <strong>MACS2_ExtSize</strong> within the specified output directory contains the MACS2 generated peaks.</p>
+</div>
+<div class="section" id="merging-a-set-of-chip-seq-alignment-files">
+<h2>3. merging a set of ChIP-seq alignment files<a class="headerlink" href="#merging-a-set-of-chip-seq-alignment-files" title="Permalink to this headline">¶</a></h2>
+<p>The script <strong>MergeBAMInferPeak.sh</strong> within the folder <strong>Imp_Scripts</strong> processes a set of ChIP-seq alignment files, to generate a merged alignment, infer peak (using MACS2) from the generated alignment, and also determines the coverage of individual bins (according to a specified fixed bin size) with respect to individual input ChIP-seq alignment files. Output of this script is used as an input to the differential analysis module (mentioned next). Parameters associated with this script are as follows:</p>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-I <var>InpFile</var></span></kbd></td>
+<td>A list of ChIP-seq BAM files. Multiple BAM files are to be mentioned in the
+format: -I bamfile1.bam -I bamfile2.bam -I bamfile3.bam and so on</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-D <var>OutBaseDir</var></span></kbd></td>
+<td>Directory containing the output set of peaks. Default: current directory</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-R <var>refGenome</var></span></kbd></td>
+<td>Reference genome string used for MACS2. Default is ‘hs’ for human chromosome. For mouse, specify ‘mm’</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">-M <var>MACS2ParamStr</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>String depicting the parameters for MACS2. Default: “–nomodel –extsize 147 -q 0.01”</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-C <var>ChrSizeFile</var></span></kbd></td>
+<td>Filename containing the chromosome size information for the reference genome</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-b <var>BinSize</var></span></kbd></td>
+<td>BinSize in base pair. Used to compute the ChIP-seq coverage for individual input
+BAM files. Default = 5000 (means 5 Kb)</td></tr>
+</tbody>
+</table>
+</div></blockquote>
+<p>Output files generated from this script:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">${OutBaseDir}/merged_input.bam: merged ChIP-seq alignment file</p>
+</li>
+<li><p class="first">${OutBaseDir}/MACS2_Out/out.macs2_peaks.narrowPeak: Peak (derived by MACS2) file generated by merged ChIP-seq alignment.</p>
+</li>
+<li><p class="first">${OutBaseDir}/ChIPCoverage1.bed, ${OutBaseDir}/ChIPCoverage2.bed, …, ${OutBaseDir}/ChIPCoverageN.bed,</p>
+<blockquote>
+<div><p>where N is the number of input ChIP-seq alignment files. Each of these output files contain the coverage of corresponding input alignment file (with respect to the specified bin size).</p>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="producing-fithichip-loops-with-different-fdr-thresholds">
+<h2>4. Producing FitHiChIP loops with different FDR thresholds<a class="headerlink" href="#producing-fithichip-loops-with-different-fdr-thresholds" title="Permalink to this headline">¶</a></h2>
+<p>It is useful to obtain significant loops on different FDR threholds, without running the complete FitHiChIP module with different FDR threshold parameters.</p>
+<p>For a custom FDR threshold of 0.05, first user should apply the following awk script on the file PREFIX.interactions_FitHiC.bed (mentioned in section 4.1.4, file no C):</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">awk ‘((NR==1) || ($NF&lt;0.05))’ ${PREFIX}.interactions_FitHiC.bed &gt; ${PREFIX}.interactions_FitHiC_Q0.05.bed</p>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="applying-merge-filtering-on-any-set-of-significant-loops-generated-by-fithichip-or-any-other-loop-calling-method">
+<h2>5. Applying merge filtering on any set of significant loops (generated by FitHiChIP or any other loop calling method)<a class="headerlink" href="#applying-merge-filtering-on-any-set-of-significant-loops-generated-by-fithichip-or-any-other-loop-calling-method" title="Permalink to this headline">¶</a></h2>
+<p>It is useful to apply the merge filtering on any set of significant loops, not just of FitHiChIP.</p>
+<p>Assuming the source code of FitHiChIP is placed within the folder ${CodeDir}, user can merge the adjacent loops using the following command:</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">python ${CodeDir}/src/CombineNearbyInteraction.py –InpFile ${PREFIX}.interactions_FitHiC_Q0.05.bed –OutFile ${PREFIX}.interactions_FitHiC_Q0.05_MergeNearContacts.bed –headerInp 1 –binsize 5000 –percent 100 –Neigh 2</p>
+</div>
+<p>where, the options are:</p>
+<blockquote>
+<div><table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--InpFile <var>InpFile</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Input file containing FitHiChIP significant interactions.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--OutFile <var>OutFile</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Output file to contain the significant and merge filtered loops.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--headerInp <var>Header</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Boolean value (0/1): 1 means InpFile has header line. 0 means no header line is in the
+input loop file.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--binsize <var>BinSize</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>Bin size (in bp). For example, 5000 means 5 Kb bin size.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--percent <var>PctVal</var></span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td>% of significant loops considered for merge filtering (default PctVal = 100).
+Users are advised to keep this value.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--Neigh <var>Val</var></span></kbd></td>
+<td>Window size (number of bins) for merge filtering. Default is Val = 2, means
+2X2 bins are employed as window. Users are advised to keep this value.</td></tr>
+</tbody>
+</table>
+</div></blockquote>
+</div></blockquote>
+<p>The file ${PREFIX}.interactions_FitHiC_Q0.05_MergeNearContacts.bed is the set of loops generated after merging adjacent ones.</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2019, Sourya Bhattacharyya, Ferhat Ay.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

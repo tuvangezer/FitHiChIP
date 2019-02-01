@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Setting up configuration file &#8212; FitHiChIP 0.1 documentation</title>
+    <link rel="stylesheet" href="../static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../static/documentation_options.js"></script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/language_data.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Details of FitHiChIP outputs" href="output.html" />
+    <link rel="prev" title="Quick start" href="quickstart.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          FitHiChIP</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick start</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Setting up configuration file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="output.html">Details of FitHiChIP outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optional.html">Setting up optional parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DiffLoops.html">Differential analysis of HiChIP loops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utilities.html">Various utility scripts / functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">Frequently asked question</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Setting up configuration file</a><ul>
+<li><a class="reference internal" href="#a-input-file-name-related-parameters">A) Input File name related parameters</a></li>
+<li><a class="reference internal" href="#b-reference-genome-related-parameters">B) Reference genome related parameters</a></li>
+<li><a class="reference internal" href="#c-generic-parameters-for-profiling-interactions">C) Generic parameters for profiling interactions</a></li>
+<li><a class="reference internal" href="#d-parameters-for-significant-loop-calling">D) Parameters for significant loop calling</a></li>
+<li><a class="reference internal" href="#e-bias-correction-related-parameters">E) Bias correction related parameters</a></li>
+<li><a class="reference internal" href="#f-merging-adjacent-interactions">F) Merging adjacent interactions</a></li>
+<li><a class="reference internal" href="#g-miscellaneous-parameters">G) Miscellaneous parameters</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="quickstart.html" title="Previous Chapter: Quick start"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Quick start</span>
+    </a>
+  </li>
+  <li>
+    <a href="output.html" title="Next Chapter: Details of FitHiChIP outputs"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Details of Fi... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="../sources/usage/configuration.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="setting-up-configuration-file">
+<h1>Setting up configuration file<a class="headerlink" href="#setting-up-configuration-file" title="Permalink to this headline">¶</a></h1>
+<p>As mentioned in the Quick Start module, FitHiChIP is executed by typing the following command in a bash terminal (assuming the executable is in current directory):</p>
+<blockquote>
+<div>sh FitHiChIP_HiCPro.sh -C configuration_file_name</div></blockquote>
+<p>Here we mention the parameters and recommended values to be provided in the configuration file.</p>
+<p>Each entry of the configuration file has the following format:</p>
+<blockquote>
+<div>Param=ParamValue</div></blockquote>
+<p>where,</p>
+<blockquote>
+<div><ul class="simple">
+<li>“Param” indicates one parameter (variable)</li>
+<li>“ParamValue” is the corresponding value (numeric or string format).</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We recommend users to mention the absolute paths of files or folders in the configuration file.</p>
+</div>
+<div class="section" id="a-input-file-name-related-parameters">
+<h2>A) Input File name related parameters<a class="headerlink" href="#a-input-file-name-related-parameters" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>A.1) ValidPairs:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Valid pairs generated by HiC-pro pipeline (either simple text format, or can be in gzipped format).</li>
+<li><a href="#id1"><span class="problematic" id="id2">**</span></a>** Note: Mandatory parameter.</li>
+</ul>
+</div></blockquote>
+<p>A.2) Interval:</p>
+<blockquote>
+<div><ul class="simple">
+<li>File depicting the bins of the interaction matrix.</li>
+<li>Size of an interval depends on the bin size.</li>
+<li>Individual bins are also assigned a distinct number.</li>
+<li>By default, this file name ends with a suffix ‘_abs.bed’.</li>
+</ul>
+</div></blockquote>
+<p>A.3) Matrix:</p>
+<blockquote>
+<div><ul class="simple">
+<li>File listing the number of interactions (contacts) among the bins listed in the “Interval” file.</li>
+<li>The file has three columns: bin1 (first interacting bin), bin2 (second interacting bin), cc (contact counts)</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">User may leave the fields A.2) and A.3) blank, if wishes to not pre-compute these matrices. In such a case, FitHiChIP computes the matrix from the parameter A.1.</p>
+</div>
+</div></blockquote>
+<p>A.4) PeakFile:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Reference ChIP-seq peak file (recommended to use standard ENCODE peaks). <strong>Mandatory parameter.</strong></li>
+<li>User may use pre-computed ChIP-seq peaks, or pre-computed HiChIP peaks (procedure to generate HiChIP peaks is described in the utility section).</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">user may employ MACS2, or a recent package hichipper (Lareau et al 2018) to compute the peaks from HiChIP data, and provide the bed formatted peak file as an input to FitHiChIP.</p>
+</div>
+</div></blockquote>
+<p>A.5) OutDir:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Output directory which would contain all the results.</li>
+<li>Default: present working directory.</li>
+</ul>
+</div></blockquote>
+<p>A.6) HiCProBasedir:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Installation directory of HiC-pro package. (example: /custom_path/HiCPro/HiC-Pro_2.9.0/) <strong>Mandatory parameter.</strong></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This parameter is important because following two modules (scripts) from HiC-pro are directly invoked from FitHiChIP:</p>
+<blockquote class="last">
+<div><ol class="arabic">
+<li><p class="first">$HiCProBasedir/scripts/build_matrix</p>
+<blockquote>
+<div><ul class="simple">
+<li>Computes the inetraction matrix from the valid pairs file</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">$HiCProBasedir/scripts/ice</p>
+<blockquote>
+<div><ul class="simple">
+<li>computes the ICE bias, if ICE bias correction is enabled</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+</div>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="b-reference-genome-related-parameters">
+<h2>B) Reference genome related parameters<a class="headerlink" href="#b-reference-genome-related-parameters" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>B.1) ChrSizeFile:</p>
+<blockquote>
+<div><ul class="simple">
+<li>File having the reference chromosome size.</li>
+<li>Default: chrom_hg19.sizes (already provided within the TestData folder).</li>
+</ul>
+</div></blockquote>
+<p>B.2) RefFasta:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Fasta formatted sequence of the reference chromosome (such as hg19, mm9).</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>This parameter is optional. Default value is blank (empty string).</li>
+<li>If provided by the user (like the file hg19.fa), used to compute the mappability and GC content information (instructions for downloading this file are provided in a separate section).</li>
+</ul>
+</div>
+</div></blockquote>
+<p>B.3) MappabilityFile:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Reference mappability file (according to the reference genome).</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
+<li><p class="first">Optional parameter. Default value is blank (empty string).</p>
+</li>
+<li><p class="first">If provided by the user, used to compute the mappability information. In such a case, user needs to download this file from the site: &lt;<a class="reference external" href="http://hgdownload.cse.ucsc.edu/goldenPath/">http://hgdownload.cse.ucsc.edu/goldenPath/</a>&gt;</p>
+</li>
+<li><p class="first">Should be provided in the bedgraph format.</p>
+</li>
+<li><p class="first">For bigWig file, user should use the following UCSC utility for converting to bedGraph format:</p>
+<blockquote>
+<div><p><strong>BigWigToBedgraph inp.bw out.bedGraph</strong></p>
+</div></blockquote>
+</li>
+</ul>
+</div>
+</div></blockquote>
+<p>B.4) REFragFile:</p>
+<blockquote>
+<div><ul class="simple">
+<li>File containing the restriction fragment information, with respect to the reference genome and the restriction site.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
+<li><p class="first">Optional parameter. Default value is blank (empty string).</p>
+</li>
+<li><p class="first">If provided, the file format (tab delimited) is:</p>
+<blockquote>
+<div><p>chr \t    interval_start  \t  interval_end</p>
+</div></blockquote>
+</li>
+<li><p class="first">The MboI restriction fragment file “MboI_hg19_RE_Fragments.bed” (most commonly used restriction fragment in various HiChIP pipelines) is provided as an example file, in the TestData folder.</p>
+</li>
+<li><p class="first">For other restriction fragment files, please refer to the HiC-Pro manual &lt;<a class="reference external" href="https://github.com/nservant/HiC-Pro">https://github.com/nservant/HiC-Pro</a>&gt; to know about their generation.</p>
+</li>
+</ul>
+</div>
+</div></blockquote>
+<p>B.5) GCSize:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Size of the window upstream and downstream the restriction site, for computing the GC content.</li>
+<li>Default = 200 (as per the specification in the package HiCNorm [PMID: 23023982])</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>This value is not used unless reference fasta sequence, mappability file, and the restriction fragment file is not provided.</li>
+</ul>
+</div>
+</div></blockquote>
+<p>B.6) MappSize:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Size of the window upstream and downstream the restriction site, to calculate the mappability information.</li>
+<li>Default = 500 (as per the specification of HiCNorm [PMID: 23023982])</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last simple">
+<li>This value is not used unless reference fasta sequence, mappability file, and the restriction fragment file is not provided.</li>
+</ul>
+</div>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="c-generic-parameters-for-profiling-interactions">
+<h2>C) Generic parameters for profiling interactions<a class="headerlink" href="#c-generic-parameters-for-profiling-interactions" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>C.1) IntType:</p>
+<blockquote>
+<div><p>Type of interaction to be computed. Options are:</p>
+<ol class="arabic simple">
+<li>peak to peak: contacts between all pairs of peak segments (subject to fixed size binning)</li>
+<li>peak to non peak: contacts between pairs of segments such that one is a peak and the other is a non-peak segment</li>
+<li>peak to all (default): here one interacting segment is a peak, while the other can be a peak or a non-peak. Encapsulates the options 1 and 2. This is the default setting, as HiChIP protocol is targeted to find protein centric interactions.</li>
+<li>all to all: Interactions between every possible pairs of segments are computed. This resembles Hi-C mode.</li>
+<li>Everything from 1 to 4. That is, all of the above mentioned interactions are computed.</li>
+</ol>
+</div></blockquote>
+<p>C.2) BINSIZE:</p>
+<blockquote>
+<div>Size of the bins, depicting the resolution employed. Default= 5000 (means 5 Kb resolution)</div></blockquote>
+<p>C.3) LowDistThr:</p>
+<blockquote>
+<div>Lower distance threshold of interaction between two intervals (CIS). Default: 20000 (indicates 20 Kb). Interactions below this distance threshold will not be considered for statistical significance.</div></blockquote>
+<p>C.4) UppDistThr:</p>
+<blockquote>
+<div>Upper distance threshold of interaction between two intervals (CIS). Default: 2000000 (indicates 2 Mb). Interactions above this distance threshold will not be considered for statistical significance.</div></blockquote>
+<p>C.5) QVALUE:</p>
+<blockquote>
+<div>Minimum FDR (q-value) cutoff for detecting significant interactions. Default: 0.01</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="d-parameters-for-significant-loop-calling">
+<h2>D) Parameters for significant loop calling<a class="headerlink" href="#d-parameters-for-significant-loop-calling" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>D.1) NBins:</p>
+<blockquote>
+<div><p>Max number of equal occupancy bins employed in the FitHiC. Default: 200</p>
+<p><strong>Note: Equal occupancy binning (recommended in FitHiC) is used for contact probability estimation.</strong></p>
+</div></blockquote>
+<p>D.2) UseP2PBackgrnd:</p>
+<blockquote>
+<div><p>Can be 0 or 1. Applicable only for peak to all interactions (IntType = 3).</p>
+<blockquote>
+<div><ul class="simple">
+<li>1: peak to peak background (locus pairs) are used for contact probability estimation. Refers to FitHiChIP(S)</li>
+<li>0: peak to all background (locus pairs) are used for contact probability estimation. Refers to FitHiChIP(L)</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">We recommend users to check FitHiChIP output for both settings. Specifically, for low to moderate sequencing depth, use 0, whereas for very high sequencing depth, employ a value 1.</p>
+</div>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="e-bias-correction-related-parameters">
+<h2>E) Bias correction related parameters<a class="headerlink" href="#e-bias-correction-related-parameters" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>E.1) BiasCorrection:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Indicates if the bias correction is enabled (1) or not (0).</li>
+<li>Default 1 (we recommend as MUST).</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">User should enable the bias correction, since without bias correction, many false positive interactions are reported.</p>
+</div>
+</div></blockquote>
+<p>E.2) BiasType:</p>
+<blockquote>
+<div><p>Can be 1 or 2. This parameter signifies the type of bias correction used.</p>
+<blockquote>
+<div><ul class="simple">
+<li>A value of 1 means that coverage specific bias is used (default).</li>
+<li>Value of 2 means that ICE specific bias is computed.</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Results in the manuscript employ BiasType=1</p>
+</div>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="f-merging-adjacent-interactions">
+<h2>F) Merging adjacent interactions<a class="headerlink" href="#f-merging-adjacent-interactions" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>F.1) MergeInt:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Has the value 0 or 1.</li>
+<li>If 1, merge filtering (+M) is enabled. Otherwise (0) not.</li>
+<li><strong>We recommend setting this value as 1.</strong></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</div>
+<div class="section" id="g-miscellaneous-parameters">
+<h2>G) Miscellaneous parameters<a class="headerlink" href="#g-miscellaneous-parameters" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>G.1) PREFIX:</p>
+<blockquote>
+<div>Prefix string used before any output file name. Default = “FitHiChIP”</div></blockquote>
+<p>G.2) Draw:</p>
+<blockquote>
+<div>A binary variable (1/0). If 1, draws various statistical and analysis plots. Default 0.</div></blockquote>
+<p>G.3) TimeProf:</p>
+<blockquote>
+<div>A binary variable (1/0). If 1, logs the time elapsed during individual steps. Default 0.</div></blockquote>
+<p>G.4) OverWrite:</p>
+<blockquote>
+<div><p>A binary variable (1/0).</p>
+<blockquote>
+<div><ul class="simple">
+<li>If 1, overwrites existing FitHiChIP output files.</li>
+<li>Otherwise (0) skips re-computation of existing outputs.</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</div></blockquote>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2019, Sourya Bhattacharyya, Ferhat Ay.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.3.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
