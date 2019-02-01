@@ -44,10 +44,8 @@ Sourya Bhattacharyya, Vivek Chandra, Pandurangan Vijayanand, and Ferhat Ay, *Fit
 Contact
 -----------
 
-For any query, please contact:
-
-	- Sourya Bhattacharyya <sourya@lji.org>
-	- Ferhat Ay <ferhatay@lji.org>
+- Sourya Bhattacharyya <sourya@lji.org>
+- Ferhat Ay <ferhatay@lji.org>
 
 
 

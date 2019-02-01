@@ -128,34 +128,52 @@
 <p>User can download FitHiChIP from the GitHub as a zipped archieve, and extract.</p>
 <p>FitHiChIP requires the following packages / libraries to be installed:</p>
 <ol class="arabic">
-<li><p class="first">HiC-pro (obtained from &lt;<a class="reference external" href="https://github.com/nservant/HiC-Pro">https://github.com/nservant/HiC-Pro</a>&gt;) (&gt;= version 2.9.0)</p>
-</li>
 <li><p class="first">Python2 (&gt;= version 2.7)</p>
 <blockquote>
 <div><p>Following python libraries are to be installed:</p>
-<ul class="simple">
-<li>OptionParser (from the library optparse)</li>
-<li>gzip</li>
-<li>networkx &lt;<a class="reference external" href="https://networkx.github.io/">https://networkx.github.io/</a>&gt;</li>
+<ul>
+<li><p class="first">OptionParser (from the library optparse; available in Python installation)</p>
+</li>
+<li><p class="first">gzip (available in Python installation)</p>
+</li>
+<li><p class="first">networkx (available in &lt;<a class="reference external" href="https://networkx.github.io/">https://networkx.github.io/</a>&gt;).</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Can be installed by the command <em>pip install networkx==2.2</em></p>
+</div>
+</div></blockquote>
+</li>
 </ul>
 </div></blockquote>
 </li>
 <li><p class="first">R (&gt;= 3.4.3)</p>
 <blockquote>
-<div><p>Following R packages are to be installed:</p>
-<ul class="simple">
-<li>optparse</li>
-<li>ggplot2</li>
-<li>splines</li>
-<li>fdrtool</li>
-<li>parallel</li>
-<li>tools</li>
-<li>GenomicRanges</li>
-<li>dplyr</li>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">User may follow &lt;<a class="reference external" href="https://www.datacamp.com/community/tutorials/installing-R-windows-mac-ubuntu">https://www.datacamp.com/community/tutorials/installing-R-windows-mac-ubuntu</a>&gt; for step by step installation of R.</p>
+</div>
+<ul>
+<li><p class="first">In addition, user needs to install the following packages (needs to type the following command in an R terminal):</p>
+<blockquote>
+<div><p><em>install.packages(c(“optparse”, “ggplot2”, “splines”, “fdrtool”, “parallel”, “tools”, “dplyr”))</em></p>
+</div></blockquote>
+</li>
+<li><p class="first">Further, user needs to install the following Bioconductor packages:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">GenomicRanges &lt;<a class="reference external" href="https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html">https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html</a>&gt;</p>
+</li>
+<li><p class="first">EdgeR &lt;<a class="reference external" href="https://bioconductor.org/packages/release/bioc/html/edgeR.html">https://bioconductor.org/packages/release/bioc/html/edgeR.html</a>&gt;</p>
+<blockquote>
+<div><ul class="simple">
+<li>Used for differential analysis of FitHiChIP loops.</li>
 </ul>
-<p>If differential analysis of FitHiChIP loops is to be performed, user should also install</p>
-<ul class="simple">
-<li>EdgeR &lt;<a class="reference external" href="https://bioconductor.org/packages/release/bioc/html/edgeR.html">https://bioconductor.org/packages/release/bioc/html/edgeR.html</a>&gt;</li>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 </div></blockquote>
 </li>
@@ -169,6 +187,33 @@
 <ul class="simple">
 <li>Also install htslib (version &gt;= 1.6) specifically for the utilities “bgzip” and “tabix”</li>
 </ul>
+</div></blockquote>
+</li>
+<li><p class="first">Bowtie2 (available in &lt;<a class="reference external" href="http://bowtie-bio.sourceforge.net/bowtie2/index.shtml">http://bowtie-bio.sourceforge.net/bowtie2/index.shtml</a>&gt;)</p>
+</li>
+<li><p class="first">HiC-pro (&lt;<a class="reference external" href="https://github.com/nservant/HiC-Pro">https://github.com/nservant/HiC-Pro</a>&gt;)</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<ul class="last">
+<li><p class="first">User should install at least version 2.9.0.</p>
+</li>
+<li><p class="first">User needs to download the GitHub repository, extract the archieve. Then user needs to edit the file <em>config-install.txt</em> and specify the installed paths of mentioned packages.</p>
+</li>
+<li><p class="first">Then in a command line terminal, user should type the following commands:</p>
+<blockquote>
+<div><ul class="simple">
+<li>make configure</li>
+<li>make CONFIG_SYS=config-install.txt install</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Installation of HiC-pro is mandatory. User needs to provide the base installation directory of HiC-pro (of the format <em>/HiC-Pro_2.</em>/) as an input to FitHiChIP configuration file.</p>
+</div>
 </div></blockquote>
 </li>
 <li><p class="first">macs2 for peak calling &lt;<a class="reference external" href="https://github.com/taoliu/MACS">https://github.com/taoliu/MACS</a>&gt;</p>

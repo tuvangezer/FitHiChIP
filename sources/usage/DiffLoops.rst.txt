@@ -1,5 +1,0 @@
-Differential analysis of HiChIP loops
-========================================
-
-
- - two categories, each with multiple replicates
