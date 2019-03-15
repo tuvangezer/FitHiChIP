@@ -158,3 +158,9 @@ Upon executing the given sample script, test data, and the configuration files, 
 User can compare this text file with his / her console output, to check whether the execution has been successful.
 
 
+Details of output files
+-------------------------
+
+Once user runs the configuration files along with the necessary parameters, output files are generated within the specified **OutDir**. Details of output files are provided in the page :ref:`Details of FitHiChIP outputs`. In particular, check for the files ***PREFIX*.interactions_FitHiC_Q"$qval".bed** and ***PREFIX*.interactions_FitHiC_Q"$qval"_MergeNearContacts.bed** (second file is available if **MergeInt** = 1)
+
+
