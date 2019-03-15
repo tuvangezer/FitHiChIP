@@ -80,6 +80,7 @@
 <li><a class="reference internal" href="#details-of-output-files">Details of output files</a></li>
 <li><a class="reference internal" href="#visualizing-significant-interactions-in-washu-epigenome-browser">Visualizing significant interactions in WashU epigenome browser</a><ul>
 <li><a class="reference internal" href="#using-current-version">Using <strong>current</strong> version</a></li>
+<li><a class="reference internal" href="#using-legacy-version">Using <strong>legacy</strong> version</a></li>
 </ul>
 </li>
 </ul>
@@ -325,6 +326,44 @@ compatible with the <strong>current</strong> version. User can visualize these t
 <li>Choose track file: select both <strong>*_WashU.bed.gz</strong> and <strong>*_WashU.bed.gz.tbi</strong> files <strong>together (2 files)</strong>.</li>
 <li>Close the track upload box (right corner - (X) sign)</li>
 <li>Now right click on the track name, and select <strong>DISPLAY MODE</strong> as <strong>ARC</strong></li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="using-legacy-version">
+<h3>Using <strong>legacy</strong> version<a class="headerlink" href="#using-legacy-version" title="Permalink to this headline">¶</a></h3>
+<p>User would need to convert the FitHiChIP significant loops (in .bed format, not gzipped version) as the following:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Output of FitHiChIP(L) or FitHiChIP(S) - file <em>FitHiC_Q”$qval”.bed</em></p>
+<blockquote>
+<div><p>Let us denote the file as <strong>inp.bed</strong>.
+It contains header line, first 6 fields denote the interacting bins and the last field denotes the q-value.
+User needs to apply the following awk script to this file:</p>
+<blockquote>
+<div><p>awk -F[‘t’] ‘{if (NR &gt; 1) {if ($NF &gt; 0) {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t”(-log($NF)/log(10))} else {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t500”}}}’ <strong>inp.bed</strong> &gt; <strong>out_WashU.bed</strong></p>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p class="first">Output of FitHiChIP(L+M) or FitHiChIP(S+M) -  file <em>FitHiC_Q”$qval”_MergeNearContacts.bed</em></p>
+<blockquote>
+<div><p>Let us denote the file as <strong>inp_merged.bed</strong>.
+It contains header line, first 6 fields denote the interacting bins and the 9th field stores the q-value.
+User needs to apply the following awk script to this file:</p>
+<p>awk -F[‘t’] ‘{if (NR &gt; 1) {if ($9 &gt; 0) {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t”(-log($9)/log(10))} else {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t500”}}}’ <strong>inp_merged.bed</strong> &gt; <strong>out_merged_WashU.bed</strong></p>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
+<p>Now user needs to upload the generated .bed file (<strong>Note: we do not need to convert them in gzipped / tabix formats</strong>) in the epigenome browser, by
+performing the following steps.</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Open &lt;<a class="reference external" href="http://epigenomegateway.wustl.edu/legacy/">http://epigenomegateway.wustl.edu/legacy/</a>&gt;</li>
+<li>Select reference genome.</li>
+<li>Select <strong>Genome Browser</strong> -&gt; <strong>Apps</strong> -&gt; <strong>File upload</strong> -&gt; <strong>Choose files</strong></li>
+<li>Select the generated WashU bed file and click <strong>setup</strong></li>
+<li>Select Radio button for <strong>Pairwise interaction</strong> -&gt; <strong>add as Track</strong></li>
+<li>Now right click on the track in the browser, and select <strong>Arc</strong>.</li>
 </ol>
 </div></blockquote>
 </div>
