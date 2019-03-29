@@ -335,7 +335,7 @@ compatible with the <strong>current</strong> version. User can visualize these t
 <p>User would need to convert the FitHiChIP significant loops (in .bed format, not gzipped version) as the following:</p>
 <blockquote>
 <div><ol class="arabic">
-<li><p class="first">Output of FitHiChIP(L) or FitHiChIP(S) - file <em>FitHiC_Q”$qval”.bed</em></p>
+<li><p class="first">Output of FitHiChIP(L) or FitHiChIP(S) - file <strong>FitHiC_Q”$qval”.bed</strong></p>
 <blockquote>
 <div><p>Let us denote the file as <strong>inp.bed</strong>.
 It contains header line, first 6 fields denote the interacting bins and the last field denotes the q-value.
@@ -345,7 +345,7 @@ User needs to apply the following awk script to this file:</p>
 </div></blockquote>
 </div></blockquote>
 </li>
-<li><p class="first">Output of FitHiChIP(L+M) or FitHiChIP(S+M) -  file <em>FitHiC_Q”$qval”_MergeNearContacts.bed</em></p>
+<li><p class="first">Output of FitHiChIP(L+M) or FitHiChIP(S+M) -  file <strong>FitHiC_Q”$qval”_MergeNearContacts.bed</strong></p>
 <blockquote>
 <div><p>Let us denote the file as <strong>inp_merged.bed</strong>.
 It contains header line, first 6 fields denote the interacting bins and the 9th field stores the q-value.
@@ -381,7 +381,7 @@ User should perform the following steps:</p>
 </li>
 <li><p class="first">Download the file <strong>interact.as</strong> (specified in the above mentioned link) and store it in the system.</p>
 </li>
-<li><p class="first">Then, convert the FitHiChIP generated significant interactions into bed format, using the following command:</p>
+<li><p class="first">Then, to convert the FitHiChIP(L) or FitHiChIP(S) generated significant interactions (file <strong>FitHiC_Q”$qval”.bed</strong>) into bed format, using the following command:</p>
 <blockquote>
 <div><p>awk -F’[t]’ ‘{if (NR&gt;1) {if ($NF&gt;0) {a=int(-log($NF)/log(10)) + 1} else {a=500}; b=100; print $1”t”(($2+$3)/2-1)”t”(($5+$6)/2+1)”t.t”a”t”b”t.t#0000FFt”$1”t”(($2+$3)/2-1)”t”(($2+$3)/2+1)”t.t.t”$4”t”(($5+$6)/2-1)”t”(($5+$6)/2+1)”t.t.”}}’ Input_FitHiChIP_Q0.01.bed | sort -k1,1 -k2,2n -k3,3n &gt; out_FitHiChIP_converted.bed</p>
 </div></blockquote>
@@ -403,6 +403,8 @@ for visualization.</p>
 </div></blockquote>
 </li>
 </ol>
+<p>6. To convert the output of FitHiChIP(L+M) or FitHiChIP(S+M) (file <strong>FitHiC_Q”$qval”_MergeNearContacts.bed</strong>), replace “$NF” with “$9” in the command
+mentioned in (4.). Rest of the procedure are similar.</p>
 </div></blockquote>
 </div>
 </div>
