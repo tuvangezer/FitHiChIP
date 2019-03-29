@@ -83,6 +83,7 @@
 <li><a class="reference internal" href="#using-legacy-version">Using <strong>legacy</strong> version</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#visualizing-significant-interactions-in-ucsc-genome-browser">Visualizing significant interactions in UCSC genome browser</a></li>
 </ul>
 </li>
 </ul>
@@ -367,6 +368,42 @@ performing the following steps.</p>
 </ol>
 </div></blockquote>
 </div>
+</div>
+<div class="section" id="visualizing-significant-interactions-in-ucsc-genome-browser">
+<h2>Visualizing significant interactions in UCSC genome browser<a class="headerlink" href="#visualizing-significant-interactions-in-ucsc-genome-browser" title="Permalink to this headline">¶</a></h2>
+<p>FitHiChIP loops can be converted to the bigBed format (or precisely BigInteract format) for visualizing in UCSC genome browser.
+User should perform the following steps:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first">Check the link &lt;<a class="reference external" href="https://genome.ucsc.edu/goldenPath/help/interact.html">https://genome.ucsc.edu/goldenPath/help/interact.html</a>&gt;, example 4, for reference.</p>
+</li>
+<li><p class="first">Download UCSC <strong>bedToBigBed</strong> utility function, store it in system.</p>
+</li>
+<li><p class="first">Download the file <strong>interact.as</strong> (specified in the above mentioned link) and store it in the system.</p>
+</li>
+<li><p class="first">Then, convert the FitHiChIP generated significant interactions into bed format, using the following command:</p>
+<blockquote>
+<div><p>awk -F’[t]’ ‘{if (NR&gt;1) {if ($NF&gt;0) {a=int(-log($NF)/log(10)) + 1} else {a=500}; b=100; print $1”t”(($2+$3)/2-1)”t”(($5+$6)/2+1)”t.t”a”t”b”t.t#0000FFt”$1”t”(($2+$3)/2-1)”t”(($2+$3)/2+1)”t.t.t”$4”t”(($5+$6)/2-1)”t”(($5+$6)/2+1)”t.t.”}}’ Input_FitHiChIP_Q0.01.bed | sort -k1,1 -k2,2n -k3,3n &gt; out_FitHiChIP_converted.bed</p>
+</div></blockquote>
+</li>
+<li><p class="first">Then convert the generated file into BigBed format as</p>
+<blockquote>
+<div><p>/path/to/bedToBigBed -as=/path/to/interact.as -type=bed5+13 out_FitHiChIP_converted.bed ref_genome_chr.sizes out_loop.bb</p>
+<p>where,</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>/path/to/bedToBigBed: path of <strong>bedToBigBed</strong> utility in local system</li>
+<li>/path/to/interact.as: path of the file <strong>interact.as</strong> in local system</li>
+</ol>
+<p>3. ref_genome_chr.sizes: file containing chromosome size information for the reference genome. Same as the parameter
+(B.1) (ChrSizeFile) in FitHiChIP configuration options. For example, for hg19 reference genome, this file is hg19.chrom.sizes.</p>
+<p>4. The file <strong>out_loop.bb</strong> is the BigBed converted significant interactions. User can upload this file in UCSC genome browser
+for visualization.</p>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ol>
+</div></blockquote>
 </div>
 </div>
 
