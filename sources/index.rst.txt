@@ -24,13 +24,12 @@ Details of execution commands and parameters are provided in the below mentioned
 	usage/installation
 	usage/quickstart
 	usage/configuration
-	usage/output
-	usage/optional
+	usage/output	
 	usage/DiffLoops
 	usage/Utilities
 	usage/FAQ
 
-
+.. usage/optional
 
 
 Citation
