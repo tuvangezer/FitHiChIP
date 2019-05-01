@@ -281,21 +281,22 @@
 <p>Then, the command for differential analysis would be:</p>
 <blockquote>
 <div><p>Rscript <strong>Imp_Scripts/DiffAnalysisHiChIP.r</strong> \</p>
-<blockquote>
-<div><p>–AllLoopList <em>cat1_repl1_file,cat1_repl2_file,cat2_repl1_File,cat2_repl2_file</em> \</p>
-<p class="attribution">&mdash;ChrSizeFile <em>TestData/chrom_hg19.sizes</em> –FDRThr 0.01 –CovThr 25 \</p>
+<p class="attribution">&mdash;AllLoopList <em>cat1_repl1_file,cat1_repl2_file,cat2_repl1_File,cat2_repl2_file</em> \</p>
 </div></blockquote>
 <blockquote>
-<div><p>–ChIPAlignFileList <em>cat1_ChIPAlign.bam,cat2_ChIPAlign.bam</em> \</p>
-<p class="attribution">&mdash;OutDir <em>/home/user/diffanalysis/outdir</em> \</p>
+<div><p>–ChrSizeFile <em>TestData/chrom_hg19.sizes</em> –FDRThr 0.01 –CovThr 25 \</p>
+<p class="attribution">&mdash;ChIPAlignFileList <em>cat1_ChIPAlign.bam,cat2_ChIPAlign.bam</em> \</p>
 </div></blockquote>
 <blockquote>
-<div><p>–CategoryList “CellLine1”,”CellLine2” \</p>
-<p class="attribution">&mdash;ReplicaCount 2,2 –ReplicaLabels1 “R1”,”R2” \</p>
+<div><p>–OutDir <em>/home/user/diffanalysis/outdir</em> \</p>
+<p class="attribution">&mdash;CategoryList “CellLine1”,”CellLine2” \</p>
 </div></blockquote>
 <blockquote>
-<div>–ReplicaLabels2 “R1”,”R2” –FoldChangeThr 2 –DiffFDRThr 0.05 –bcv 0.4</div></blockquote>
-<ul class="simple">
+<div><p>–ReplicaCount 2,2 –ReplicaLabels1 “R1”,”R2” \</p>
+<p class="attribution">&mdash;ReplicaLabels2 “R1”,”R2” –FoldChangeThr 2 –DiffFDRThr 0.05 –bcv 0.4</p>
+</div></blockquote>
+<blockquote>
+<div><ul class="simple">
 <li>Here, <em>cat1_repl1_file</em> denotes the loops of category 1, replicate 1, containing FitHiChIP significance values. Similar notations for the other files.</li>
 <li>In the parameter –AllLoopList, all the samples of category 1 should be specified first, followed by the samples in category 2</li>
 <li>User can also specify the files using colons (:) as a separator instead of comma.</li>
@@ -311,21 +312,22 @@
 <p>Then, the command for differential analysis would be:</p>
 <blockquote>
 <div><p>Rscript <strong>Imp_Scripts/DiffAnalysisHiChIP.r</strong> \</p>
-<blockquote>
-<div><p>–AllLoopList <em>cat1_repl1_file,cat1_repl2_file,cat2_repl1_File,cat2_repl2_file</em> \</p>
-<p class="attribution">&mdash;ChrSizeFile <em>TestData/chrom_hg19.sizes</em> –FDRThr 0.01 –CovThr 25 \</p>
+<p class="attribution">&mdash;AllLoopList <em>cat1_repl1_file,cat1_repl2_file,cat2_repl1_File,cat2_repl2_file</em> \</p>
 </div></blockquote>
 <blockquote>
-<div><p>–ChIPAlignFileList <em>cat1_R1_ChIPAlign.bam,cat1_R2_ChIPAlign.bam,cat2_R1_ChIPAlign.bam,cat2_R2_ChIPAlign.bam</em> \</p>
-<p class="attribution">&mdash;OutDir <em>/home/user/diffanalysis/outdir</em> \</p>
+<div><p>–ChrSizeFile <em>TestData/chrom_hg19.sizes</em> –FDRThr 0.01 –CovThr 25 \</p>
+<p class="attribution">&mdash;ChIPAlignFileList <em>cat1_R1_ChIPAlign.bam,cat1_R2_ChIPAlign.bam,cat2_R1_ChIPAlign.bam,cat2_R2_ChIPAlign.bam</em> \</p>
 </div></blockquote>
 <blockquote>
-<div><p>–CategoryList “CellLine1”,”CellLine2” \</p>
-<p class="attribution">&mdash;ReplicaCount 2,2 –ReplicaLabels1 “R1”,”R2” \</p>
+<div><p>–OutDir <em>/home/user/diffanalysis/outdir</em> \</p>
+<p class="attribution">&mdash;CategoryList “CellLine1”,”CellLine2” \</p>
 </div></blockquote>
 <blockquote>
-<div>–ReplicaLabels2 “R1”,”R2” –FoldChangeThr 2 –DiffFDRThr 0.05 –bcv 0.4</div></blockquote>
-<ul class="simple">
+<div><p>–ReplicaCount 2,2 –ReplicaLabels1 “R1”,”R2” \</p>
+<p class="attribution">&mdash;ReplicaLabels2 “R1”,”R2” –FoldChangeThr 2 –DiffFDRThr 0.05 –bcv 0.4</p>
+</div></blockquote>
+<blockquote>
+<div><ul class="simple">
 <li>Here, <em>cat1_R1_ChIPAlign.bam</em> denotes the ChIP-seq alignment for replicate 1 of the category 1. Similar notations for the other files.</li>
 </ul>
 </div></blockquote>
@@ -345,21 +347,18 @@
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt><strong>EdgeR_Loops_Ov_FitHiChIP_Sig_One_Repl</strong> <span class="classifier-delimiter">:</span> <span class="classifier">Folder containing the EdgeR differential loops which are significant (in terms of FitHiChIP FDR threshold)</span></dt>
-<dd><blockquote class="first">
-<div><p>in at least one input sample.</p>
-</div></blockquote>
+<li><p class="first"><strong>EdgeR_Loops_Ov_FitHiChIP_Sig_One_Repl</strong> :</p>
+<blockquote>
+<div><p>Folder containing the EdgeR differential loops which are significant (in terms of FitHiChIP FDR threshold) in at least one input sample.</p>
 <ul class="simple">
 <li>Underlying folders have name <strong>X-Y</strong> where <strong>X</strong> and <strong>Y</strong> denote the type of 1D bin (LD, ND or HD) according to their ChIP-coverage specific</li>
 </ul>
 <p>differential analysis.</p>
-<ul class="last simple">
+<ul class="simple">
 <li>Within each folder, file <strong>DiffLoops.bed</strong> contains differential loops of the particular category.</li>
 <li>Files <strong>DiffLoops_Excl_*.bed</strong> contain differential loops exclusive to one category (i.e. significant in only that category).</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ol>
 </div></blockquote>
