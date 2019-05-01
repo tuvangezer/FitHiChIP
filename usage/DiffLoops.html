@@ -75,6 +75,8 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Differential analysis of HiChIP loops</a><ul>
+<li><a class="reference internal" href="#basics">Basics</a></li>
+<li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#example-1">Example 1</a></li>
 <li><a class="reference internal" href="#example-2">Example 2</a></li>
 <li><a class="reference internal" href="#details-of-differential-analysis-outputs">Details of differential analysis outputs</a></li>
@@ -130,8 +132,41 @@
   <div class="section" id="differential-analysis-of-hichip-loops">
 <h1>Differential analysis of HiChIP loops<a class="headerlink" href="#differential-analysis-of-hichip-loops" title="Permalink to this headline">¶</a></h1>
 <p>FitHiChIP is used to find out the differential HiChIP loops between two categories, each with multiple replicates.</p>
-<p>The script ** Differetial_Analysis_Script.sh **  contains command to execute differential analysis.</p>
+<p>The script <strong>Differetial_Analysis_Script.sh</strong> contains command to execute differential analysis.</p>
 <p>Source code of the differential analysis is provided in <strong>Imp_Scripts/DiffAnalysisHiChIP.r</strong></p>
+<div class="section" id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
+<p>The code aims to find differential HiChIP loops among two categories, each with one or more replicates, and also categorizes the interacting 1D bins in those differential loops as differential or non-differential 1D (ChIP) bins.</p>
+<p>Specifically, the code categorizes 1D bins in three classes, depending on their difference in ChIP-seq coverage among the two input categories:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p class="first"><strong>HD</strong> (i.e. high difference) - when the 1D bin is differential (by EdgeR) according to its ChIP-seq coverage in the two input categories.</p>
+</li>
+<li><p class="first"><strong>ND</strong> (i.e. no difference) -  when the 1D bin is non-differential (by EdgeR) and has &lt; X% difference in ChIP-seq coverage in the two input categories.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Here X is by default 25, and is determined by the parameter –CovThr (mentioned below)</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>LD</strong> (i.e. low difference) - when the 1D bin is non-differential (by EdgeR) and has &gt;= X% difference in ChIP-seq coverage in the two input categories.</p>
+</li>
+</ol>
+</div></blockquote>
+<p>Output differential loops are categorized in the following five classes:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><strong>HD-HD</strong> - when both interacting bins in the differential loops belong in the class <strong>HD</strong></li>
+<li><strong>ND-ND</strong> - when both interacting bins in the differential loops belong in the class <strong>ND</strong></li>
+<li><strong>LD-LD</strong> - when both interacting bins in the differential loops belong in the class <strong>LD</strong></li>
+<li><strong>ND-LD</strong> - when one interacting bin in the differential loops belong in the class <strong>ND</strong>, while the other bin belongs within <strong>LD</strong></li>
+<li><strong>HD-LDorND</strong> - when one interacting bin in the differential loops belong in the class <strong>HD</strong>, while the other bin belongs in either <strong>LD</strong> or <strong>ND</strong>.</li>
+</ol>
+</div></blockquote>
+<p>The category <strong>ND-ND</strong> (category 2) corresponds to the differential loops involving non-differential 1D bins.</p>
+</div>
+<div class="section" id="options">
+<h2>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <p>Parameters associated with this script is:</p>
 <blockquote>
 <div><table class="docutils option-list" frame="void" rules="none">
@@ -140,115 +175,156 @@
 <tbody valign="top">
 <tr><td class="option-group">
 <kbd><span class="option">--AllLoopList</span></kbd></td>
-<td>Comma or colon separated list of loops of all categories and all replicates, with FitHiChIP significance (FDR) values.
-User should provide the file <strong>*PREFIX*.interactions_FitHiC.bed</strong>
-(please check the page <a class="reference internal" href="output.html#details-of-fithichip-outputs"><span class="std std-ref">Details of FitHiChIP outputs</span></a>) which contains all loops for a specific sample
-along with FitHiChIP generated significance values. Mandatory parameter.</td></tr>
-</tbody>
-</table>
-<p class="attribution">&mdash;ChrSizeFile           File having the chromosome sizes for the reference genome. For hg19 reference genome, user can use the file
-<em>chrom_hg19.sizes</em> which is already provided within the TestData folder. Mandatory parameter.</p>
-</div></blockquote>
-<blockquote>
-<div><table class="docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group">
-<kbd><span class="option">--FDRThr</span></kbd></td>
-<td>FDR significance threshold for FitHiChIP loops. Default = 0.01</td></tr>
-</tbody>
-</table>
-<p class="attribution">&mdash;CovThr                        Maximum difference of ChIP-seq coverage (in percentage) between two categories to label a non-differential (by EdgeR) 1D bin as
-ND (i.e. no difference). Default is 25, means non-differential 1D bins with difference of ChIP coverage &lt; 25% are considered as ND.</p>
-</div></blockquote>
-<blockquote>
-<div><dl class="docutils">
-<dt>–ChIPAlignFileList Comma or colon separated list of ChIP-seq alignment files. User can 1) either provide two files, one for each category,</dt>
-<dd><ol class="first last arabic simple" start="2">
-<li>or provide ChIP seq alignment files one for each sample. Mandatory parameter.</li>
-</ol>
-</dd>
-</dl>
-<p class="attribution">&mdash;OutDir                        Output directory to contain differential analysis results. Mandatory parameter.</p>
-</div></blockquote>
-<blockquote>
-<div><table class="docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group">
-<kbd><span class="option">--CategoryList</span></kbd></td>
-<td>Comma or colon separated list of strings, representing labels of two categories. Default: Category1, Category2.</td></tr>
-</tbody>
-</table>
-<p class="attribution">&mdash;ReplicaCount          Comma or colon separated list representing the count of samples (replicates) belonging to individual categories.
-Default: 1,1 (means that we are considering one replicate per sample).</p>
-</div></blockquote>
-<blockquote>
-<div><table class="docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--ReplicaLabels1</span></kbd></td>
-</tr>
-<tr><td>&#160;</td><td>Comma or colon separated list of the label of replicates for the first category. Default: R1,R2, etc.</td></tr>
-</tbody>
-</table>
-<p class="attribution">&mdash;ReplicaLabels2        Comma or colon separated list of the label of replicates for the second category. Default: R1,R2, etc.</p>
-</div></blockquote>
-<blockquote>
-<div><table class="docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--FoldChangeThr</span></kbd></td>
-</tr>
-<tr><td>&#160;</td><td>EdgeR fold change threshold. Default = 2 means log2 fold change threshold of 1 is applied on the EdgeR output.</td></tr>
-</tbody>
-</table>
-<p class="attribution">&mdash;DiffFDRThr            FDR threshold for EdgeR. Default is 0.05, means that loops with FDR &lt; 0.05, and fold change &gt;= log2(FoldChangeThr)
-would be considered as differential.</p>
-</div></blockquote>
-<blockquote>
-<div><table class="docutils option-list" frame="void" rules="none">
-<col class="option" />
-<col class="description" />
-<tbody valign="top">
-<tr><td class="option-group">
-<kbd><span class="option">--bcv</span></kbd></td>
-<td>If number of replicates is 1 for either of the input categories, this value is the square-root-dispersion.
-Default and recommended value is 0.4. For details, please see the EdgeR manual.</td></tr>
+<td><ul class="first last simple">
+<li>Comma or colon separated list of loops of all categories and all replicates, with FitHiChIP significance (FDR) values.</li>
+<li>User should provide the file <strong>*PREFIX*.interactions_FitHiC.bed</strong> (please check the page <a class="reference internal" href="output.html#details-of-fithichip-outputs"><span class="std std-ref">Details of FitHiChIP outputs</span></a>) which contains all loops for a specific sample along with FitHiChIP generated significance values. <strong>Mandatory parameter</strong>.</li>
+</ul>
+</td></tr>
 </tbody>
 </table>
 </div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">File specified in the parameter –AllLoopList can be in gzipped format as well.</p>
+<p>File specified in the parameter –AllLoopList can be in gzipped format as well.</p>
+<table class="last docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">--ChrSizeFile</span></kbd></td>
+<td><ul class="first last simple">
+<li>File having the chromosome sizes for the reference genome.</li>
+<li>Same as the parameter (B.4) in FitHiChIP configuration options. <strong>Mandatory parameter</strong>.</li>
+</ul>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--FDRThr</span></kbd></td>
+<td><ul class="first last simple">
+<li>FDR significance threshold for FitHiChIP loops. Default = 0.01. Same as the parameter (B.9) in FitHiChIP configuration options.</li>
+</ul>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--CovThr</span></kbd></td>
+<td><ul class="first last simple">
+<li>Maximum difference of ChIP-seq coverage (in percentage) between two categories to label a non-differential (by EdgeR) 1D bin as <strong>ND</strong> (i.e. no difference).</li>
+<li>Default = 25, means non-differential 1D bins with difference of ChIP coverage &lt; 25% are considered as <strong>ND</strong>.</li>
+<li>In such a case, non-differential 1D bins with difference of ChIP coverage &gt;= 25% are considered as <strong>LD</strong> (i.e. low difference).</li>
+</ul>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--ChIPAlignFileList</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><ul class="first last simple">
+<li>Comma or colon separated list of ChIP-seq alignment files.</li>
+<li>User can 1) either provide two files, one for each category, 2) or provide ChIP seq alignment files one for each sample. <strong>Mandatory parameter</strong>.</li>
+</ul>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--OutDir</span></kbd></td>
+<td><ul class="first last simple">
+<li>Output directory to contain differential analysis results. <strong>Mandatory parameter</strong>.</li>
+</ul>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--CategoryList</span></kbd></td>
+<td><ul class="first last simple">
+<li>Comma or colon separated list of strings, representing labels of two categories.</li>
+<li>Default: Category1, Category2.</li>
+</ul>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--ReplicaCount</span></kbd></td>
+<td><ul class="first last simple">
+<li>Comma or colon separated list representing the count of samples (replicates) belonging to individual categories.</li>
+<li>Default: 1,1 (means one replicate per sample exists).</li>
+</ul>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--ReplicaLabels1</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><ul class="first last simple">
+<li>Comma or colon separated list of the label of replicates for the first category.</li>
+<li>Default: R1,R2, etc.</li>
+</ul>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--ReplicaLabels2</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><ul class="first last simple">
+<li>Comma or colon separated list of the label of replicates for the second category.</li>
+<li>Default: R1,R2, etc.</li>
+</ul>
+</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--FoldChangeThr</span></kbd></td>
+</tr>
+<tr><td>&#160;</td><td><ul class="first last simple">
+<li>EdgeR fold change threshold.</li>
+<li>Default = 2 means log2 fold change threshold of 1 is applied on the EdgeR output.</li>
+</ul>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--DiffFDRThr</span></kbd></td>
+<td><ul class="first last simple">
+<li>FDR threshold for EdgeR.</li>
+<li>Default is 0.05, means that loops with FDR &lt; 0.05, and fold change &gt;= log2(FoldChangeThr) would be considered as differential.</li>
+</ul>
+</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--bcv</span></kbd></td>
+<td><ul class="first last simple">
+<li>If number of replicates is 1 for either of the input categories, this value is the square-root-dispersion.</li>
+<li>Default and recommended value is 0.4. For details, please see the EdgeR manual.</li>
+</ul>
+</td></tr>
+</tbody>
+</table>
+</div>
 </div>
 <div class="section" id="example-1">
 <h2>Example 1<a class="headerlink" href="#example-1" title="Permalink to this headline">¶</a></h2>
-<p>Suppose, we have two input categories denoted as <em>cat1</em> and <em>cat2</em>. Each category has two replicates, denoted as <em>repl1</em> and <em>repl2</em>.
-Assume hg19 as the reference genome, and we have one ChIP-seq alignment file for individual categories. Then, the command for differential analysis would be:</p>
+<p>Suppose, we have two input categories denoted as <em>cat1</em> and <em>cat2</em>.</p>
+<p>Each category has two replicates, denoted as <em>repl1</em> and <em>repl2</em>.</p>
+<p>Assume hg19 as the reference genome, and we have one ChIP-seq alignment file for individual categories.</p>
+<p>Then, the command for differential analysis would be:</p>
 <blockquote>
-<div><p>Rscript Imp_Scripts/DiffAnalysisHiChIP.r –AllLoopList cat1_repl1_file,cat1_repl2_file,cat2_repl1_File,cat2_repl2_file –ChrSizeFile TestData/chrom_hg19.sizes –FDRThr 0.01 –CovThr 25 –ChIPAlignFileList cat1_ChIPAlign.bam,cat2_ChIPAlign.bam –OutDir /home/user/diffanalysis/outdir –CategoryList “CellLine1”,”CellLine2” –ReplicaCount 2,2 –ReplicaLabels1 “R1”,”R2” –ReplicaLabels2 “R1”,”R2” –FoldChangeThr 2 –DiffFDRThr 0.05 –bcv 0.4</p>
+<div><p>Rscript <strong>Imp_Scripts/DiffAnalysisHiChIP.r</strong> </p>
+<blockquote>
+<div><p>–AllLoopList <em>cat1_repl1_file</em>,*cat1_repl2_file*,*cat2_repl1_File*,*cat2_repl2_file* </p>
+<p class="attribution">&mdash;ChrSizeFile <em>TestData/chrom_hg19.sizes</em> –FDRThr 0.01 –CovThr 25 </p>
+</div></blockquote>
+<blockquote>
+<div><p>–ChIPAlignFileList <em>cat1_ChIPAlign.bam</em>,*cat2_ChIPAlign.bam* </p>
+<p class="attribution">&mdash;OutDir <em>/home/user/diffanalysis/outdir</em> –CategoryList “CellLine1”,”CellLine2” </p>
+</div></blockquote>
+<blockquote>
+<div>–ReplicaCount 2,2 –ReplicaLabels1 “R1”,”R2” –ReplicaLabels2 “R1”,”R2” –FoldChangeThr 2 –DiffFDRThr 0.05 –bcv 0.4</div></blockquote>
 <ul class="simple">
 <li>Here, <em>cat1_repl1_file</em> denotes the loops of category 1, replicate 1, containing FitHiChIP significance values. Similar notations for the other files.</li>
 <li>In the parameter –AllLoopList, all the samples of category 1 should be specified first, followed by the samples in category 2</li>
 <li>User can also specify the files using colons (:) as a separator instead of comma.</li>
-<li>The parameter –FDRThr corresponds to the significance threshold of FDR employed for FitHiChIP loops.</li>
 <li>The file <em>cat1_ChIPAlign.bam</em> represents ChIP-seq alignment file for the category 1. Similar notation for category 2.</li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="example-2">
 <h2>Example 2<a class="headerlink" href="#example-2" title="Permalink to this headline">¶</a></h2>
-<p>Suppose, we have two input categories denoted as <em>cat1</em> and <em>cat2</em>. Each category has two replicates, denoted as <em>repl1</em> and <em>repl2</em>.
-Assume hg19 as the reference genome, and we have one ChIP-seq alignment file for individual samples. Then, the command for differential analysis would be:</p>
+<p>Suppose, we have two input categories denoted as <em>cat1</em> and <em>cat2</em>.</p>
+<p>Each category has two replicates, denoted as <em>repl1</em> and <em>repl2</em>.</p>
+<p>Assume hg19 as the reference genome, and we have one ChIP-seq alignment file for individual samples.</p>
+<p>Then, the command for differential analysis would be:</p>
 <blockquote>
-<div><p>Rscript Imp_Scripts/DiffAnalysisHiChIP.r –AllLoopList cat1_repl1_file,cat1_repl2_file,cat2_repl1_File,cat2_repl2_file –ChrSizeFile TestData/chrom_hg19.sizes –FDRThr 0.01 –CovThr 25 –ChIPAlignFileList cat1_R1_ChIPAlign.bam,cat1_R2_ChIPAlign.bam,cat2_R1_ChIPAlign.bam,cat2_R2_ChIPAlign.bam –OutDir /home/user/diffanalysis/outdir –CategoryList “CellLine1”,”CellLine2” –ReplicaCount 2,2 –ReplicaLabels1 “R1”,”R2” –ReplicaLabels2 “R1”,”R2” –FoldChangeThr 2 –DiffFDRThr 0.05 –bcv 0.4</p>
+<div><p>Rscript <strong>Imp_Scripts/DiffAnalysisHiChIP.r</strong> </p>
+<blockquote>
+<div><p>–AllLoopList <em>cat1_repl1_file</em>,*cat1_repl2_file*,*cat2_repl1_File*,*cat2_repl2_file* </p>
+<p class="attribution">&mdash;ChrSizeFile <em>TestData/chrom_hg19.sizes</em> –FDRThr 0.01 –CovThr 25 </p>
+</div></blockquote>
+<blockquote>
+<div><p>–ChIPAlignFileList <em>cat1_R1_ChIPAlign.bam</em>,*cat1_R2_ChIPAlign.bam*,*cat2_R1_ChIPAlign.bam*,*cat2_R2_ChIPAlign.bam* </p>
+<p class="attribution">&mdash;OutDir <em>/home/user/diffanalysis/outdir</em> –CategoryList “CellLine1”,”CellLine2” </p>
+</div></blockquote>
+<blockquote>
+<div>–ReplicaCount 2,2 –ReplicaLabels1 “R1”,”R2” –ReplicaLabels2 “R1”,”R2” –FoldChangeThr 2 –DiffFDRThr 0.05 –bcv 0.4</div></blockquote>
 <ul class="simple">
 <li>Here, <em>cat1_R1_ChIPAlign.bam</em> denotes the ChIP-seq alignment for replicate 1 of the category 1. Similar notations for the other files.</li>
 </ul>

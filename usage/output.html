@@ -136,7 +136,9 @@
 <h1>Details of FitHiChIP outputs<a class="headerlink" href="#details-of-fithichip-outputs" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="summary-html-file">
 <h2>Summary HTML file<a class="headerlink" href="#summary-html-file" title="Permalink to this headline">¶</a></h2>
-<p>Suppose <strong>OutDir</strong> denotes the specified output directory in the configuration file. Then, successful execution of FitHiChIP pipeline generates an HTML file <em>Summary_results_FitHiChIP.html</em> within this output directory. This file lists all output files generated from the FitHiChIP pipeline, according to the given input parameters.</p>
+<p>Suppose <strong>OutDir</strong> denotes the specified output directory in the configuration file.</p>
+<p>Then, successful execution of FitHiChIP pipeline generates an HTML file <strong>Summary_results_FitHiChIP.html</strong> within this output directory <strong>OutDir</strong>.</p>
+<p>This file lists all output files generated from the FitHiChIP pipeline, according to the given input parameters.</p>
 </div>
 <div class="section" id="details-of-output-files">
 <h2>Details of output files<a class="headerlink" href="#details-of-output-files" title="Permalink to this headline">¶</a></h2>
@@ -144,66 +146,55 @@
 <p>User may additionally open this page <a class="reference internal" href="configuration.html#setting-up-configuration-file"><span class="std std-ref">Setting up configuration file</span></a> for checking the configuration parameters and analyzing the below mentioned output files and folders:</p>
 <blockquote>
 <div><ol class="arabic">
-<li><p class="first"><strong>Parameters.txt</strong>: a file listing the parameters used for current execution.</p>
+<li><p class="first"><strong>Parameters.txt</strong>: file listing the parameters used.</p>
 </li>
-<li><p class="first"><strong>TimingProfile.txt</strong>: If the parameter (G.3) is 1, this file lists the time taken for individual steps.</p>
-</li>
-<li><p class="first"><strong>HiCPro_Matrix_BinSize”BINSIZE”</strong>: If the parameters (A.2) and (A.3) are empty, this folder contains the interaction matrix files generated from the input valid pairs file. The interaction matrix files are <em>MatrixHiCPro_abs.bed</em> and <em>MatrixHiCPro.matrix</em>.</p>
+<li><p class="first"><strong>HiCPro_Matrix_BinSize”BINSIZE”</strong>:</p>
 <blockquote>
-<div><ul>
-<li><p class="first"><strong>*.interactions.initial.bed</strong>: CIS interactions with respect to this contact matrix file (interacting regions, and their contact counts) are also dumped separately in this file.</p>
+<div><p>If the parameters (A.2) and (A.3) are empty, this folder contains the interaction matrix files generated from the input valid pairs file.</p>
+<p>The interaction matrix files are <em>MatrixHiCPro_abs.bed</em> and <em>MatrixHiCPro.matrix</em>.</p>
+<ul>
+<li><p class="first"><strong>*.interactions.initial.bed</strong>: CIS locus pairs along with their contact counts, corresponding to the input valid pairs (or contact matrix).</p>
 </li>
-<li><p class="first"><strong>L_”l”_U”u”</strong>: folder name according to the distance thresholds “l” and “u” specified in the parameters (C.3) and (C.4).</p>
-<blockquote>
-<div><ul class="simple">
-<li><strong>*.cis.interactions.DistThr.bed</strong>: File within the above mentioned directory contains the CIS interactions filtered within the specified distance thresholds l and u.</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</li>
-<li><p class="first"><strong>NormFeatures</strong>: Folder containing various statistical features computed for individual genomic intervals / bins (with respect to the specified bin size).</p>
-<blockquote>
-<div><ul>
-<li><p class="first">User may look at the file <strong>*.AllBin_CompleteFeat.bed</strong> specifically. The file is of the following format:</p>
-<blockquote>
-<div><ul>
-<li><p class="first">Columns 1 to 3: chromosome interval (according to the specified bin size).</p>
-</li>
-<li><p class="first">Column 4: Coverage of this interval (number of reads mapped onto it)</p>
-</li>
-<li><p class="first">Column 5: denotes whether this interval belongs to a peak segment (1) or non-peak segment (0). Here, the peak information is with respect to the parameter (A.4) of the configuration file.</p>
-</li>
-<li><p class="first">Column 6: Bias value of this interval. Computed either by coverage specific bias correction, or the ICE specific bias normalization, according to the value of the parameter (E.2).</p>
-</li>
-<li><p class="first">Columns 7 and 8 denote the mappability and GC contents, respectively, for the current interval.</p>
+<li><p class="first"><strong>L_”l”_U”u”</strong>: folder name according to the distance thresholds “l” and “u” specified in the parameters (B.7) and (B.8).</p>
 <blockquote>
 <div><ul class="simple">
-<li><em>These values are zero if no mappability, restriction fragment and reference genome fasta sequence are provided</em>.</li>
+<li><strong>*.cis.interactions.DistThr.bed</strong>: File containing CIS interactions within the distance range from “l” to “u”.</li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
 </div></blockquote>
 </li>
-</ul>
-</div></blockquote>
-</li>
-<li><p class="first">The folders <strong>FitHiChIP_”INTTYPE”_b”BINSIZE”_L”l”_U”u”</strong> contain the results for different types of interactions, subject to the specified bin size, and the distance thresholds specified.</p>
+</ol>
+<ol class="arabic" start="4">
+<li><p class="first"><strong>NormFeatures</strong>:</p>
 <blockquote>
-<div><ul>
-<li><p class="first">INTTYPE: interaction type: Have one of the following values:</p>
+<div><p>Folder containing various statistical features computed for individual genomic intervals / bins (with respect to the specified bin size).</p>
+<ul>
+<li><p class="first">User should specifically look at the file <strong>*.AllBin_CompleteFeat.bed</strong>, having the following format:</p>
 <blockquote>
 <div><ul class="simple">
-<li>ALL2ALL (when the parameter (C.1) = 4)</li>
-<li>Peak2Peak (when the parameter (C.1) = 1)</li>
-<li>Peak2NonPeak (when the parameter (C.1) = 2)</li>
-<li>Peak2ALL (when the parameter (C.1) = 3)</li>
+<li>Columns 1 to 3: chromosome bin.</li>
+<li>Column 4: Coverage of this bin (number of reads mapped onto it)</li>
+<li>Column 5: if 1, this bin is a <em>peak-bin</em> (overlapping with the reference peaks, provided in the parameter B.1); otherwise (0) <em>non-peak bin</em>.</li>
+<li>Column 6: Bias value of a bin; either coverage or ICE bias depending on the parameter B.11</li>
+<li>Columns 7 and 8: unused columns.</li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Within this folder, a directory structure of the following naming pattern is created:</p>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>FitHiChIP_”INTTYPE”_b”BINSIZE”_L”l”_U”u”</strong></p>
+<blockquote>
+<div><p>Folder according to the specified foreground (type of interactions to be reported) as per the parameter B.5, bin size (parameter B.6),
+and the distance thresholds (parameters B.7 and B.8)</p>
+<ul class="simple">
+<li>INTTYPE is a string with values ALL2ALL (when the parameter (B.5) = 4), Peak2Peak (parameter (B.5) = 1), Peak2NonPeak (parameter (B.5) = 2), or</li>
+</ul>
+<p>Peak2ALL (parameter (B.5) = 3).</p>
+<ul>
+<li><p class="first">Within this folder, a directory structure of the following name (pattern) is created:</p>
 <blockquote>
 <div><p><strong>P2PBckgr_[UseP2PBackgrnd]/[BiasType]</strong></p>
 </div></blockquote>
@@ -212,85 +203,80 @@
 <p>Where:</p>
 <blockquote>
 <div><ul class="simple">
-<li>[UseP2PBackgrnd]: Value of the parameter (D.2)</li>
-<li>[BiasType]: String of either “Coverage_Bias” or “ICE_Bias”, according to the value of parameter (E.2).</li>
+<li>[UseP2PBackgrnd]: Value of the parameter (B.10)</li>
+<li>[BiasType]: A string, either “Coverage_Bias” or “ICE_Bias”, according to the parameter (B.11).</li>
 </ul>
 </div></blockquote>
 <ul>
-<li><p class="first">Within this generic directory structure, following files and folders are created:</p>
+<li><p class="first">Within this directory, following files are important:</p>
 <blockquote>
 <div><ul class="simple">
-<li><strong>Interactions.bed</strong>: All contacts among the selected pairs of segments (depending upon the value of INTTYPE).</li>
-<li><strong>Interactions.sortedGenDist.bed</strong>: Above contacts are sorted by increasing genomic distance. Used as an input to the custom FitHiC implementation.</li>
-<li><strong>FitHiC</strong>: If the option (E.1) = 0, this folder contains the significant interactions generated by Naive FitHiC method (without any bias correction technique).</li>
-<li><strong>FitHiC_BiasCorr</strong>: this folder is created when (E.1) = 1.</li>
+<li><strong>Interactions.sortedGenDist.bed</strong>: Interactions sorted by increasing genomic distance. Used as the input to FitHiChIP.</li>
+<li><strong>FitHiC_BiasCorr</strong>:</li>
 </ul>
-<p>Directory structure within the folders <strong>FitHiC</strong> and <strong>FitHiC_BiasCorr</strong> are similar. Following files and folders reside within this directory:</p>
+<p>Within this folder, following files and folders reside:</p>
 <blockquote>
-<div><ul class="simple">
-<li><strong>Bin_Info.log</strong>: File listing the bins employed in FitHiChIP (equal occupancy bins)</li>
-<li>configuration.txt: list of configuration parameters for FitHiChIP</li>
-<li><strong>*PREFIX*.interactions_FitHiC.bed</strong>: Lists all interactions along with their probabilities, p and q values, computed using the FitHiChIP method.</li>
-<li><strong>*PREFIX*.interactions_FitHiC_Q”$qval”.bed</strong>: Lists the significant interactions according to the q-value ($qval) significance threshold specified as an input argument. For example, if q value threshold is 0.01, the file name becomes <strong>*PREFIX*.interactions_FitHiC_Q0.01.bed</strong>.</li>
-</ul>
+<div><ul>
+<li><p class="first"><strong>Bin_Info.log</strong>: Equal occupancy bins employed in FitHiChIP</p>
+</li>
+<li><p class="first"><strong>configuration.txt</strong>: list of configuration parameters for FitHiChIP</p>
+</li>
+<li><p class="first"><strong>*PREFIX*.interactions_FitHiC.bed</strong>: Lists all interactions along with their significance (p-value and FDR) computed using FitHiChIP.</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For differential analysis of HiChIP loops (page <a class="reference internal" href="DiffLoops.html#differential-analysis-of-hichip-loops"><span class="std std-ref">Differential analysis of HiChIP loops</span></a>), this file is to be provided as input.</p>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>*PREFIX*.interactions_FitHiC_Q”qval”.bed</strong>:</p>
+<blockquote>
+<div><p>Significant interactions according to the q-value threshold (qval) specified in parameter (B.9).</p>
+<p>For example, if qval=0.01 (default), the file name becomes <strong>*PREFIX*.interactions_FitHiC_Q0.01.bed</strong>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ol class="last arabic">
 <li><p class="first">This file is the set of significant interactions generated by FitHiChIP, without applying any merge filtering.</p>
 </li>
-<li><p class="first">For peak-to-all foreground (default output mode), if <strong>UseP2PBackgrnd</strong> = 0, then this set of interactions are denoted as FitHiChIP(L) in the manuscript.</p>
+<li><p class="first">For peak-to-all foreground (default output mode), if <strong>UseP2PBackgrnd</strong> = 0, then this set of loops refer to FitHiChIP(L).</p>
 </li>
-<li><p class="first">Else, for <strong>UseP2PBackgrnd</strong> = 1, the set of loops are denoted as FitHiChIP(S) in the manuscript.</p>
+<li><p class="first">If <strong>UseP2PBackgrnd</strong> = 1, this set of loops refer to FitHiChIP(S) output.</p>
 </li>
-<li><p class="first">Loops used in our manuscript employs FDR threshold of 0.01</p>
-</li>
-<li><p class="first">For a custom FDR threshold (say 0.05), user may use the following awk script to filter the file (C) based on its last column.</p>
+<li><p class="first">For a custom FDR threshold (say 0.05), user may use the following awk script to generate the significant interactions.</p>
 <blockquote>
-<div><p>awk ‘$NF&lt;0.05’ PREFIX.interactions_FitHiC.bed &gt; FitHiC_out_Q0.05.bed</p>
+<div><p>awk ‘$NF&lt;0.05’ <em>PREFIX</em>.interactions_FitHiC.bed &gt; FitHiChIP_out_Q0.05.bed</p>
 </div></blockquote>
 </li>
 </ol>
 </div>
-<ul class="simple">
-<li><strong>*PREFIX*.interactions_FitHiC_Q”$qval”_WashU.bed.gz</strong>: Significant interactions are converted to WashU epigenome browser compatible format.</li>
-</ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<ol class="arabic simple">
-<li>There is also a tabix compressed file (extension: <strong>.tbi</strong>) alongwith.</li>
-</ol>
-<p class="last">2. User can upload the <em>_WashU.bed.gz</em> and <em>_WashU.bed.gz.tbi</em> files in the WashU epigenome browser for visualization. Details
-are mentioned below.</p>
-</div>
-<ul>
-<li><p class="first"><strong>*PREFIX*.interactions_FitHiC_Q”$qval”_Dist_CC.pdf</strong>: Plots the contact count vs genomic distance, corresponding to the significant loops.</p>
+</div></blockquote>
 </li>
-<li><p class="first"><strong>Merge_Nearby_Interactions</strong>: Directory containing the output of merge filtering operation, provided the parameter (F.1) is set as 1.</p>
+<li><p class="first"><strong>*PREFIX*.interactions_FitHiC_Q”qval”_WashU.bed.*</strong>:</p>
 <blockquote>
-<div><ul class="simple">
-<li><strong>*PREFIX*.interactions_FitHiC_Q”$qval”_MergeNearContacts.bed</strong>: output significant loop file after merge filtering operation.</li>
-</ul>
+<div><p>Significant FitHiChIP loops converted to WashU epigenome browser compatible format.</p>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>Merge_Nearby_Interactions</strong>:</p>
+<blockquote>
+<div><p>Directory containing the output of merge filtering operation, if the parameter (B.12) = 1.</p>
+<ul>
+<li><p class="first"><strong>*PREFIX*.interactions_FitHiC_Q”qval”_MergeNearContacts.bed</strong>:</p>
+<blockquote>
+<div><p>FitHiChIP significant loops returned after the merge filtering operation.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <ol class="last arabic simple">
-<li>This file is the set of significant interactions generated by FitHiChIP, after applying merge filtering technique.</li>
-<li>For peak-to-all foreground (default output mode), if <strong>UseP2PBackgrnd</strong> = 0, then this set of interactions are denoted as FitHiChIP(L+M) in the manuscript.</li>
-<li>Else, for <strong>UseP2PBackgrnd</strong> = 1, the set of loops are denoted as FitHiChIP(S+M) in the manuscript.</li>
+<li>For peak-to-all foreground (default output mode), if <strong>UseP2PBackgrnd</strong> = 0, this set of loops refer to FitHiChIP(L+M) output.</li>
+<li>If <strong>UseP2PBackgrnd</strong> = 1, this set of loops are denoted as FitHiChIP(S+M) in the manuscript.</li>
 </ol>
 </div>
-<ul class="simple">
-<li><strong>*PREFIX*.interactions_FitHiC_Q”$qval”_MergeNearContacts_WashU.bed.gz</strong>: WashU epigenome browser compatible loops.</li>
-</ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<ol class="arabic simple">
-<li>There is also a tabix compressed file (extension: <strong>.tbi</strong>) alongwith.</li>
-</ol>
-<p class="last">2. User can upload the <em>_WashU.bed.gz</em> and <em>_WashU.bed.gz.tbi</em>  files in the WashU epigenome browser for visualization.
-Details are mentioned below.</p>
-</div>
-<ul class="simple">
-<li><strong>*PREFIX*.interactions_FitHiC_Q”$qval”_MergeNearContacts_Dist_CC.pdf</strong>: Plot between contact count and interaction distance, corresponding to the significant and merged loops.</li>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>*PREFIX*.interactions_FitHiC_Q”qval”_MergeNearContacts_WashU.bed.*</strong>:</p>
+<blockquote>
+<div><p>WashU epigenome browser compatible loops.</p>
+</div></blockquote>
+</li>
 </ul>
 </div></blockquote>
 </li>
@@ -309,9 +295,12 @@ Details are mentioned below.</p>
 <p>FitHiChIP interactions can be loaded in the WashU epigenome browser for visualizing the significant interactions.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Two different versions of WashU epigenome browser currently exist, namely <strong>current</strong> (&lt;<a class="reference external" href="http://epigenomegateway.wustl.edu/browser/">http://epigenomegateway.wustl.edu/browser/</a>&gt;) and
-<strong>legacy</strong> (&lt;<a class="reference external" href="http://epigenomegateway.wustl.edu/legacy/">http://epigenomegateway.wustl.edu/legacy/</a>&gt;). These two versions have substantial differences, so we describe using
-both of these versions.</p>
+<p>Two different versions of WashU epigenome browser currently exist:</p>
+<blockquote>
+<div><p><strong>current</strong> (&lt;<a class="reference external" href="http://epigenomegateway.wustl.edu/browser/">http://epigenomegateway.wustl.edu/browser/</a>&gt;) and</p>
+<p><strong>legacy</strong> (&lt;<a class="reference external" href="http://epigenomegateway.wustl.edu/legacy/">http://epigenomegateway.wustl.edu/legacy/</a>&gt;).</p>
+</div></blockquote>
+<p class="last">These two versions have substantial differences, so we describe using both of these versions.</p>
 </div>
 <div class="section" id="using-current-version">
 <h3>Using <strong>current</strong> version<a class="headerlink" href="#using-current-version" title="Permalink to this headline">¶</a></h3>
@@ -334,22 +323,22 @@ compatible with the <strong>current</strong> version. User can visualize these t
 <p>User would need to convert the FitHiChIP significant loops (in .bed format, not gzipped version) as the following:</p>
 <blockquote>
 <div><ol class="arabic">
-<li><p class="first">Output of FitHiChIP(L) or FitHiChIP(S) - file <strong>FitHiC_Q”$qval”.bed</strong></p>
+<li><p class="first">Output of FitHiChIP(L) or FitHiChIP(S) - file <strong>FitHiC_Q”qval”.bed</strong></p>
 <blockquote>
-<div><p>Let us denote the file as <strong>inp.bed</strong>.
+<div><p>Let us denote the file as <em>inp.bed</em>.
 It contains header line, first 6 fields denote the interacting bins and the last field denotes the q-value.
 User needs to apply the following awk script to this file:</p>
 <blockquote>
-<div><p>awk -F[‘t’] ‘{if (NR &gt; 1) {if ($NF &gt; 0) {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t”(-log($NF)/log(10))} else {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t500”}}}’ <strong>inp.bed</strong> &gt; <strong>out_WashU.bed</strong></p>
+<div><p>awk -F[‘t’] ‘{if (NR &gt; 1) {if ($NF &gt; 0) {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t”(-log($NF)/log(10))} else {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t500”}}}’ <em>inp.bed</em> &gt; <em>out_WashU.bed</em></p>
 </div></blockquote>
 </div></blockquote>
 </li>
-<li><p class="first">Output of FitHiChIP(L+M) or FitHiChIP(S+M) -  file <strong>FitHiC_Q”$qval”_MergeNearContacts.bed</strong></p>
+<li><p class="first">Output of FitHiChIP(L+M) or FitHiChIP(S+M) -  file <strong>FitHiC_Q”qval”_MergeNearContacts.bed</strong></p>
 <blockquote>
-<div><p>Let us denote the file as <strong>inp_merged.bed</strong>.
+<div><p>Let us denote the file as <em>inp_merged.bed</em>.
 It contains header line, first 6 fields denote the interacting bins and the 9th field stores the q-value.
 User needs to apply the following awk script to this file:</p>
-<p>awk -F[‘t’] ‘{if (NR &gt; 1) {if ($9 &gt; 0) {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t”(-log($9)/log(10))} else {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t500”}}}’ <strong>inp_merged.bed</strong> &gt; <strong>out_merged_WashU.bed</strong></p>
+<p>awk -F[‘t’] ‘{if (NR &gt; 1) {if ($9 &gt; 0) {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t”(-log($9)/log(10))} else {print $1”,”(($2+$3)/2-1)”,”(($2+$3)/2+1)”t”$4”,”(($5+$6)/2-1)”,”(($5+$6)/2+1)”t500”}}}’ <em>inp_merged.bed</em> &gt; <em>out_merged_WashU.bed</em></p>
 </div></blockquote>
 </li>
 </ol>
@@ -380,30 +369,28 @@ User should perform the following steps:</p>
 </li>
 <li><p class="first">Download the file <strong>interact.as</strong> (specified in the above mentioned link) and store it in the system.</p>
 </li>
-<li><p class="first">Then, to convert the FitHiChIP(L) or FitHiChIP(S) generated significant interactions (file <strong>FitHiC_Q”$qval”.bed</strong>) into bed format, using the following command:</p>
+<li><p class="first">Then, to convert the FitHiChIP(L) or FitHiChIP(S) generated significant interactions (file <strong>FitHiC_Q”qval”.bed</strong>) into bed format, using the following command:</p>
 <blockquote>
-<div><p>awk -F’[t]’ ‘{if (NR&gt;1) {if ($NF&gt;0) {a=int(-log($NF)/log(10)) + 1} else {a=500}; b=100; print $1”t”(($2+$3)/2-1)”t”(($5+$6)/2+1)”t.t”a”t”b”t.t#0000FFt”$1”t”(($2+$3)/2-1)”t”(($2+$3)/2+1)”t.t.t”$4”t”(($5+$6)/2-1)”t”(($5+$6)/2+1)”t.t.”}}’ Input_FitHiChIP_Q0.01.bed | sort -k1,1 -k2,2n -k3,3n &gt; out_FitHiChIP_converted.bed</p>
+<div><p>awk -F’[t]’ ‘{if (NR&gt;1) {if ($NF&gt;0) {a=int(-log($NF)/log(10)) + 1} else {a=500}; b=100; print $1”t”(($2+$3)/2-1)”t”(($5+$6)/2+1)”t.t”a”t”b”t.t#0000FFt”$1”t”(($2+$3)/2-1)”t”(($2+$3)/2+1)”t.t.t”$4”t”(($5+$6)/2-1)”t”(($5+$6)/2+1)”t.t.”}}’ <em>FitHiC_Q”qval”.bed</em> | sort -k1,1 -k2,2n -k3,3n &gt; <em>out_FitHiChIP_converted.bed</em></p>
 </div></blockquote>
 </li>
 <li><p class="first">Then convert the generated file into BigBed format as</p>
 <blockquote>
-<div><p>/path/to/bedToBigBed -as=/path/to/interact.as -type=bed5+13 out_FitHiChIP_converted.bed ref_genome_chr.sizes out_loop.bb</p>
+<div><p>/path/to/bedToBigBed -as=/path/to/interact.as -type=bed5+13 <em>out_FitHiChIP_converted.bed</em> <em>ref_genome_chr.sizes</em> <em>out_loop.bb</em></p>
 <p>where,</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li>/path/to/bedToBigBed: path of <strong>bedToBigBed</strong> utility in local system</li>
 <li>/path/to/interact.as: path of the file <strong>interact.as</strong> in local system</li>
+<li><em>ref_genome_chr.sizes</em>: Same as the parameter (B.4) (ChrSizeFile) in FitHiChIP configuration options.</li>
+<li>The file <strong>out_loop.bb</strong> is the BigBed converted significant interactions. User can upload this file in UCSC genome browser for visualization.</li>
 </ol>
-<p>3. ref_genome_chr.sizes: file containing chromosome size information for the reference genome. Same as the parameter
-(B.1) (ChrSizeFile) in FitHiChIP configuration options. For example, for hg19 reference genome, this file is hg19.chrom.sizes.</p>
-<p>4. The file <strong>out_loop.bb</strong> is the BigBed converted significant interactions. User can upload this file in UCSC genome browser
-for visualization.</p>
 </div></blockquote>
 </div></blockquote>
 </li>
 </ol>
-<p>6. To convert the output of FitHiChIP(L+M) or FitHiChIP(S+M) (file <strong>FitHiC_Q”$qval”_MergeNearContacts.bed</strong>), replace “$NF” with “$9” in the command
-mentioned in (4.). Rest of the procedure are similar.</p>
+<p>6. To convert the output of FitHiChIP(L+M) or FitHiChIP(S+M) (file <strong>FitHiC_Q”qval”_MergeNearContacts.bed</strong>), replace “$NF” with “$9” in the command
+mentioned in (4). Rest of the procedure is similar.</p>
 </div></blockquote>
 </div>
 </div>

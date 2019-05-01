@@ -75,7 +75,7 @@
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
 <li><a class="reference internal" href="#">Setting up configuration file</a><ul>
-<li><a class="reference internal" href="#a-input-file-name-related-parameters">A) Input File name related parameters</a></li>
+<li><a class="reference internal" href="#a-support-of-input-file-formats">A) Support of input file formats</a></li>
 <li><a class="reference internal" href="#b-other-important-parameters">B) Other important parameters</a></li>
 </ul>
 </li>
@@ -131,8 +131,7 @@
 <p>As mentioned in the Quick Start module, FitHiChIP is executed by typing the following command in a bash terminal (assuming the executable is in current directory):</p>
 <blockquote>
 <div>sh FitHiChIP_HiCPro.sh -C configuration_file_name</div></blockquote>
-<p>Here we mention the parameters and recommended values to be provided in the configuration file.</p>
-<p>Each entry of the configuration file has the following format:</p>
+<p>Here we mention the parameters and recommended values to be provided in the configuration file. Each entry of the configuration file has the following format:</p>
 <blockquote>
 <div>Param=ParamValue</div></blockquote>
 <p>where,</p>
@@ -144,12 +143,12 @@
 </div></blockquote>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">We recommend users to mention the absolute paths of files or folders in the configuration file.</p>
+<p class="last">We recommend users to mention absolute paths of files / folders in the configuration file.</p>
 </div>
-<div class="section" id="a-input-file-name-related-parameters">
-<h2>A) Input File name related parameters<a class="headerlink" href="#a-input-file-name-related-parameters" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-support-of-input-file-formats">
+<h2>A) Support of input file formats<a class="headerlink" href="#a-support-of-input-file-formats" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><p>FitHiChIP supports input in either of three possible options:</p>
+<div><p>FitHiChIP supports inputs in either of three possible options:</p>
 <ol class="arabic simple">
 <li>Either specify the parameter A.1</li>
 <li>Or, specify both the parameters A.2 and A.3</li>
@@ -183,7 +182,7 @@
 <div><ul class="simple">
 <li>Tab delimited text file containing the locus pairs (binned) and the contact count.</li>
 <li>Of the format:        chr1    start1          end1    chr2    start2          end2    contact</li>
-<li>Can be generated from any other HiC or HiChIP data processing pipelines, or custom scripts.</li>
+<li>Can be generated from any HiC or HiChIP data processing pipelines, or custom scripts.</li>
 </ul>
 </div></blockquote>
 </div></blockquote>
@@ -191,12 +190,13 @@
 <div class="section" id="b-other-important-parameters">
 <h2>B) Other important parameters<a class="headerlink" href="#b-other-important-parameters" title="Permalink to this headline">¶</a></h2>
 <blockquote>
-<div><p>With the input file provided by one of the above mentioned parameters, user should also provide the below mentioned parameters:</p>
+<div><p>With the input file provided by one of the above mentioned options, user should also provide the following parameters:</p>
 <p>B.1) PeakFile:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Reference ChIP-seq or HiChIP peak file (recommended to use standard ENCODE peaks). <strong>Mandatory parameter.</strong></li>
-<li>User may use pre-computed ChIP-seq peaks, or pre-computed HiChIP peaks (procedure to generate HiChIP peaks is described in the utility section).</li>
+<li>Reference ChIP-seq or HiChIP peak file. <strong>Mandatory parameter.</strong></li>
+<li>User may use pre-computed ChIP-seq peaks in ENCODE,</li>
+<li>or, user may compute HiChIP peaks and use them (described in the page <a class="reference internal" href="Utilities.html#various-utility-scripts-functions"><span class="std std-ref">Various utility scripts / functions</span></a>).</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -214,46 +214,24 @@ and provide the bed formatted peak file as an input to FitHiChIP.</p>
 <p>B.3) HiCProBasedir:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Installation directory of HiC-pro package. (example: /custom_path/HiCPro/HiC-Pro_2.9.0/) <strong>Mandatory parameter.</strong></li>
+<li>Installation directory of HiC-pro package (example: /custom_path/HiCPro/HiC-Pro_2.9.0/). <strong>Mandatory parameter.</strong></li>
 </ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p>This parameter is important because following two modules (scripts) from HiC-pro are directly invoked from FitHiChIP:</p>
-<blockquote class="last">
-<div><ol class="arabic">
-<li><p class="first">$HiCProBasedir/scripts/build_matrix</p>
-<blockquote>
-<div><ul class="simple">
-<li>Computes the inetraction matrix from the valid pairs file</li>
-</ul>
-</div></blockquote>
-</li>
-<li><p class="first">$HiCProBasedir/scripts/ice</p>
-<blockquote>
-<div><ul class="simple">
-<li>computes the ICE bias, if ICE bias correction is enabled</li>
-</ul>
-</div></blockquote>
-</li>
-</ol>
-</div></blockquote>
-</div>
 </div></blockquote>
 <p>B.4) ChrSizeFile:</p>
 <blockquote>
 <div><ul class="simple">
-<li>File having the chromosome size corresponding to the reference genome. <strong>Mandatory parameter.</strong></li>
-<li>For example, for the hg19 reference genome, user should provide the file <strong>chrom_hg19.sizes</strong> (already provided within the TestData folder).</li>
+<li>File containing the chromosome size corresponding to the reference genome. <strong>Mandatory parameter.</strong></li>
+<li>For example, the file <strong>chrom_hg19.sizes</strong> within the folder “TestData” is applicable for the reference genome hg19.</li>
 </ul>
 </div></blockquote>
 <p>B.5) IntType:</p>
 <blockquote>
-<div><p>Type of interaction to be computed. Options are:</p>
+<div><p>Type of interaction (foreground) reported by FitHiChIP. Options are:</p>
 <ol class="arabic simple">
-<li>peak to peak: contacts between all pairs of peak segments (subject to fixed size binning)</li>
-<li>peak to non peak: contacts between pairs of segments such that one is a peak and the other is a non-peak segment</li>
-<li>peak to all (default): here one interacting segment is a peak, while the other can be a peak or a non-peak. Encapsulates the options 1 and 2. This is the default setting, as HiChIP protocol is targeted to find protein centric interactions.</li>
-<li>all to all: Interactions between every possible pairs of segments are computed. This resembles Hi-C mode.</li>
+<li><strong>peak to peak</strong>: contacts between all pairs of peak segments (subject to fixed size binning)</li>
+<li><strong>peak to non peak</strong>: contacts between pairs of segments such that one is a peak and the other is a non-peak segment</li>
+<li><strong>peak to all (default)</strong>: here one interacting segment is a peak, while the other can be a peak or a non-peak. Thus, encapsulates options 1 and 2.</li>
+<li><strong>all to all</strong>: Interactions between every possible pairs of segments, similar to Hi-C.</li>
 <li>Everything from 1 to 4. That is, all of the above mentioned interactions are computed.</li>
 </ol>
 </div></blockquote>
@@ -274,22 +252,22 @@ and provide the bed formatted peak file as an input to FitHiChIP.</p>
 <div><p>Can be 0 or 1. Applicable only for peak to all interactions (IntType = 3).</p>
 <blockquote>
 <div><ul class="simple">
-<li>1: peak to peak background (locus pairs) are used for contact probability estimation. Refers to FitHiChIP(S)</li>
-<li>0: peak to all background (locus pairs) are used for contact probability estimation. Refers to FitHiChIP(L)</li>
+<li>1: peak to peak (or stringent) background (locus pairs) are used for contact probability estimation. Refers to FitHiChIP(S)</li>
+<li>0: peak to all (or loose) background (locus pairs) are used for contact probability estimation. Refers to FitHiChIP(L)</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">We recommend users to check FitHiChIP output for both settings. Specifically, for low to moderate sequencing depth, use 0, whereas for very high sequencing depth, employ a value 1.</p>
+<p class="last">We recommend users to execute FitHiChIP using both loose and stringent settings. Specifically, for low to moderate sequencing depth, use 0, whereas for very high sequencing depth, employ a value 1.</p>
 </div>
 </div></blockquote>
 </div></blockquote>
 <p>B.11) BiasType:</p>
 <blockquote>
-<div><p>Can be 1 or 2. This parameter signifies the type of bias correction used.</p>
+<div><p>Can be 1 or 2. Indicates the type of bias correction used.</p>
 <blockquote>
 <div><ul class="simple">
-<li>A value of 1 means that coverage specific bias is used (default).</li>
-<li>Value of 2 means that ICE specific bias is computed.</li>
+<li>A value of 1 means that coverage bias regression is used (default).</li>
+<li>Value of 2 means that ICE bias regression is computed.</li>
 </ul>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
